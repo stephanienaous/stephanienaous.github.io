@@ -1,14 +1,416 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Robotics engineering portfolio showcasing projects in mechatronics, collaborative robotics, and human-robot interaction.">
-    <title>Robotics Portfolio | Stephanie Naous</title>
+
+    <meta name="description" content="Stephanie Naous — Mechanical Engineer and Robotics M2 student at Sorbonne Université, specializing in collaborative robotics.">
+
+    <title>Stephanie Naous | Robotics Portfolio</title>
+
+    <style>
+        :root {
+            --ivory: #F7F4F1;
+            --navy: #202333;
+            --mauve: #C9A8C8;
+            --dark-mauve: #8C667F;
+            --teal: #91B9B5;
+            --white: #FFFFFF;
+            --muted: #777784;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            background: var(--ivory);
+            color: var(--navy);
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+
+        header {
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 1px solid rgba(32, 35, 51, 0.08);
+        }
+
+        .logo {
+            font-size: 1.55rem;
+            font-weight: 750;
+            letter-spacing: -1px;
+            color: var(--dark-mauve);
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 27px;
+        }
+
+        nav a {
+            font-size: 0.88rem;
+            color: var(--navy);
+            transition: color 0.25s ease;
+        }
+
+        nav a:hover {
+            color: var(--dark-mauve);
+        }
+
+        /* Hero section */
+
+        .hero {
+            max-width: 1440px;
+            min-height: calc(100vh - 90px);
+            margin: 0 auto;
+            padding: 85px 8%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 75px;
+        }
+
+        .eyebrow {
+            color: var(--dark-mauve);
+            font-size: 0.79rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2.8rem, 5vw, 4.8rem);
+            font-weight: 400;
+            line-height: 1.13;
+            letter-spacing: -1.8px;
+            max-width: 700px;
+            margin-bottom: 27px;
+        }
+
+        .hero h1 span {
+            color: var(--dark-mauve);
+            font-style: italic;
+        }
+
+        .intro {
+            max-width: 660px;
+            font-size: 1rem;
+            line-height: 1.95;
+            color: #565765;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 35px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 25px;
+            border: 1px solid var(--navy);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .button-primary {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .button-primary:hover {
+            background: var(--dark-mauve);
+            border-color: var(--dark-mauve);
+            transform: translateY(-2px);
+        }
+
+        .button-secondary:hover {
+            background: var(--mauve);
+            border-color: var(--mauve);
+            transform: translateY(-2px);
+        }
+
+        /* Portrait */
+
+        .portrait-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .portrait-frame {
+            width: min(100%, 350px);
+            aspect-ratio: 0.79;
+            overflow: hidden;
+            border-radius: 180px 180px 12px 12px;
+            background: #E7DDE5;
+            border: 8px solid rgba(255, 255, 255, 0.65);
+            box-shadow: 0 20px 60px rgba(32, 35, 51, 0.10);
+        }
+
+        .portrait-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .portrait-caption {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .portrait-caption h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .portrait-caption p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+        }
+
+        .portrait-line {
+            width: 45px;
+            height: 2px;
+            margin: 15px auto 0;
+            background: var(--teal);
+        }
+
+        /* Lower-page section preview */
+
+        .section-preview {
+            padding: 65px 8%;
+            background: #EFEBE8;
+            text-align: center;
+        }
+
+        .section-preview p {
+            max-width: 620px;
+            margin: 12px auto 0;
+            color: #626270;
+        }
+
+        .section-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .section-links a {
+            padding: 10px 18px;
+            border: 1px solid rgba(32, 35, 51, 0.25);
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+        }
+
+        .section-links a:hover {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 25px 8%;
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        /* Responsive layout */
+
+        @media (max-width: 900px) {
+            header {
+                padding: 22px 6%;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            .hero {
+                padding: 65px 7%;
+                grid-template-columns: 1fr 0.8fr;
+                gap: 35px;
+            }
+
+            .portrait-frame {
+                width: min(100%, 300px);
+            }
+
+            .intro {
+                font-size: 0.94rem;
+            }
+        }
+
+        @media (max-width: 680px) {
+            header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                justify-content: flex-start;
+                gap: 12px 20px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 55px 7% 65px;
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.65rem, 10vw, 3.7rem);
+            }
+
+            .portrait-column {
+                grid-row: 1;
+            }
+
+            .portrait-frame {
+                width: min(82%, 310px);
+            }
+
+            .intro {
+                font-size: 0.96rem;
+            }
+
+            .section-preview {
+                padding: 50px 7%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Stephanie Naous</h1>
-    <p>Mechatronics, Robotics and Intelligent Systems</p>
-    <p>Welcome to my engineering portfolio.</p>
+
+    <header>
+        <a href="#home" class="logo">SN.</a>
+
+        <nav aria-label="Main navigation">
+            <a href="#home">Home</a>
+            <a href="#education">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#research">Research</a>
+            <a href="#experience">Experience</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+                <p class="eyebrow">Mechanical Engineering · Robotics</p>
+
+                <h1>
+                    Engineering robotics
+                    <span>that makes a difference.</span>
+                </h1>
+
+                <p class="intro">
+                    I'm a mechanical engineer pursuing an M2 in Mechatronics,
+                    Artificial Intelligence and Robotic Systems at Sorbonne
+                    Université, specializing in collaborative robotics.
+                    Driven by curiosity and a passion for engineering, I'm
+                    interested in developing intelligent robotic systems
+                    that bring together technical innovation, creative
+                    problem-solving, and meaningful human interaction.
+                    I aspire to contribute to technologies that push
+                    engineering forward while making a positive difference
+                    in people's lives.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#projects" class="button button-primary">
+                        Explore Projects
+                    </a>
+
+                    <a
+                        href="CV-Stephanie-Naous.pdf"
+                        class="button button-secondary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View My CV
+                    </a>
+                </div>
+            </div>
+
+            <div class="portrait-column">
+                <div class="portrait-frame">
+                    <img
+                        src="stephaniena.jpeg"
+                        alt="Portrait of Stephanie Naous"
+                    >
+                </div>
+
+                <div class="portrait-caption">
+                    <h2>Stephanie Naous</h2>
+                    <p>Mechanical Engineer · Robotics M2</p>
+                    <div class="portrait-line"></div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="section-preview">
+            <p class="eyebrow">Discover My Work</p>
+            <h2>Engineering, research and innovation</h2>
+
+            <p>
+                Explore my academic background, robotics projects,
+                research experience and engineering journey.
+            </p>
+
+            <div class="section-links">
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#research">Research</a>
+                <a href="#experience">Experience</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Stephanie Naous · Robotics Engineering Portfolio</p>
+    </footer>
+
 </body>
 </html>
