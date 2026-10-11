@@ -221,15 +221,15 @@
             display: block;
         }
 
-        /* Section previews */
+        /* Discover My Work section */
 
         .section-preview {
-            padding: 70px 0;
+            padding: 80px 0;
             border-top: 1px solid rgba(32, 35, 51, 0.12);
         }
 
         .section-heading {
-            margin-bottom: 35px;
+            margin-bottom: 38px;
         }
 
         .section-heading .eyebrow {
@@ -237,6 +237,7 @@
         }
 
         .section-heading h2 {
+            font-family: Georgia, "Times New Roman", serif;
             font-size: clamp(2rem, 3.5vw, 3rem);
             line-height: 1.2;
             color: var(--navy);
@@ -244,12 +245,15 @@
 
         .preview-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
 
         .preview-card {
-            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 25px;
             background: var(--white);
             border-radius: 8px;
             border: 1px solid rgba(32, 35, 51, 0.08);
@@ -263,28 +267,30 @@
 
         .preview-card .number {
             color: var(--dark-mauve);
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             font-weight: 700;
             letter-spacing: 1px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .preview-card h3 {
             font-size: 1.2rem;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .preview-card p {
+        .preview-card p.card-description {
             color: #626371;
-            font-size: 0.94rem;
+            font-size: 0.92rem;
+            line-height: 1.7;
         }
 
         .text-link {
             display: inline-block;
-            margin-top: 17px;
+            margin-top: auto;
+            padding-top: 20px;
             color: var(--dark-mauve);
             font-weight: 700;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
         }
 
         .text-link:hover {
@@ -303,18 +309,23 @@
 
         /* Responsive layout */
 
+        @media (max-width: 1000px) {
+            .preview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                gap: 35px;
+            }
+        }
+
         @media (max-width: 850px) {
             .hero {
                 grid-template-columns: 1fr 0.75fr;
-                gap: 35px;
             }
 
             .nav-links {
                 gap: 16px;
-            }
-
-            .preview-grid {
-                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -357,7 +368,7 @@
             }
 
             .section-preview {
-                padding: 50px 0;
+                padding: 55px 0;
             }
         }
     </style>
@@ -443,20 +454,21 @@
 
         </section>
 
-        <!-- Section previews -->
+        <!-- Discover My Work -->
         <section class="section-preview" id="projects">
             <div class="container">
+
                 <div class="section-heading">
-                    <p class="eyebrow">What I Do</p>
-                    <h2>Engineering, Research & Projects</h2>
+                    <p class="eyebrow">Discover My Work</p>
+                    <h2>Engineering, Research and Innovation</h2>
                 </div>
 
                 <div class="preview-grid">
 
-                    <article class="preview-card">
+                    <article class="preview-card" id="education">
                         <p class="number">01 / EDUCATION</p>
-                        <h3>Academic Background</h3>
-                        <p>
+                        <h3>Education</h3>
+                        <p class="card-description">
                             My academic journey in mechanical engineering
                             and robotics, combining engineering fundamentals
                             with intelligent robotic systems.
@@ -466,24 +478,42 @@
                         </a>
                     </article>
 
+                    <article class="preview-card" id="project-work">
+                        <p class="number">02 / PROJECTS</p>
+                        <h3>Projects</h3>
+                        <p class="card-description">
+                            Hands-on engineering projects that bring together
+                            mechanical design, control, and robotics.
+                        </p>
+                        <a href="#project-work" class="text-link">
+                            Explore Projects →
+                        </a>
+                    </article>
+
                     <article class="preview-card" id="research">
-                        <p class="number">02 / RESEARCH</p>
-                        <h3>Robotics Research</h3>
-                        <p>
+                        <p class="number">03 / RESEARCH</p>
+                        <h3>Research</h3>
+                        <p class="card-description">
                             Exploring wearable robotics, sensing, control,
                             and technologies that support human interaction
                             and rehabilitation.
                         </p>
+                        <a href="#research" class="text-link">
+                            Explore Research →
+                        </a>
                     </article>
 
                     <article class="preview-card" id="experience">
-                        <p class="number">03 / EXPERIENCE</p>
-                        <h3>Engineering Experience</h3>
-                        <p>
-                            Applying engineering knowledge through hands-on
-                            projects, technical problem-solving, and
-                            industrial experience.
+                        <p class="number">04 / EXPERIENCE</p>
+                        <h3>Experience</h3>
+                        <p class="card-description">
+                            Applying engineering knowledge through
+                            industrial internships, technical problem-solving,
+                            and practical experience.
                         </p>
+                        <a href="#experience" class="text-link">
+                            Explore Experience →
+                        </a>
                     </article>
 
                 </div>
