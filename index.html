@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Stephanie Naous — Mechanical Engineer and Robotics M2 student at Sorbonne Université, specializing in collaborative robotics.">
-
-    <title>Stephanie Naous | Robotics Portfolio</title>
+    <title>Stephanie Naous | Robotics Engineer</title>
 
     <style>
         :root {
@@ -17,7 +14,6 @@
             --dark-mauve: #8C667F;
             --teal: #91B9B5;
             --white: #FFFFFF;
-            --muted: #777784;
         }
 
         * {
@@ -28,13 +24,12 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 100px;
         }
 
         body {
+            font-family: Arial, Helvetica, sans-serif;
             background: var(--ivory);
             color: var(--navy);
-            font-family: "Segoe UI", Arial, sans-serif;
             line-height: 1.7;
         }
 
@@ -43,71 +38,75 @@
             text-decoration: none;
         }
 
+        .container {
+            width: min(1120px, 88%);
+            margin: 0 auto;
+        }
+
         /* Navigation */
 
         header {
             width: 100%;
-            padding: 25px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 30px;
-            border-bottom: 1px solid rgba(32, 35, 51, 0.08);
-        }
-
-        .logo {
-            font-size: 1.55rem;
-            font-weight: 750;
-            letter-spacing: -1px;
-            color: var(--dark-mauve);
+            padding: 22px 0;
+            background: var(--ivory);
         }
 
         nav {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            gap: 27px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
         }
 
-        nav a {
-            font-size: 0.88rem;
+        .logo {
             color: var(--navy);
-            transition: color 0.25s ease;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        nav a:hover {
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.93rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
             color: var(--dark-mauve);
         }
 
         /* Hero section */
 
         .hero {
-            max-width: 1440px;
-            min-height: calc(100vh - 90px);
-            margin: 0 auto;
-            padding: 85px 8%;
+            min-height: 78vh;
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             align-items: center;
-            gap: 75px;
+            gap: 65px;
+            padding-top: 55px;
+            padding-bottom: 75px;
         }
 
         .eyebrow {
             color: var(--dark-mauve);
-            font-size: 0.79rem;
-            font-weight: 700;
-            letter-spacing: 2.5px;
             text-transform: uppercase;
-            margin-bottom: 24px;
+            letter-spacing: 3px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
 
         .hero h1 {
-            font-family: Georgia, "Times New Roman", serif;
+            color: var(--navy);
             font-size: clamp(3.2rem, 5.5vw, 5.2rem);
-            font-weight: 400;
             line-height: 1.08;
             letter-spacing: -2px;
-            max-width: 700px;
             margin-bottom: 15px;
         }
 
@@ -121,199 +120,250 @@
             font-size: clamp(1rem, 1.5vw, 1.2rem);
             font-weight: 500;
             letter-spacing: 0.3px;
-            margin-bottom: 27px;
+            margin-bottom: 24px;
         }
 
-        .intro {
-            max-width: 660px;
-            font-size: 1rem;
-            line-height: 1.95;
-            color: #565765;
+        .hero-tagline {
+            color: var(--navy);
+            font-size: clamp(1.2rem, 2vw, 1.7rem);
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 22px;
+        }
+
+        .hero-tagline em {
+            color: var(--dark-mauve);
+            font-style: italic;
+        }
+
+        .hero-description {
+            max-width: 610px;
+            color: #555766;
+            font-size: 1.02rem;
+            margin-bottom: 30px;
         }
 
         .hero-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
-            margin-top: 35px;
+            gap: 14px;
         }
 
         .button {
             display: inline-block;
-            padding: 13px 25px;
-            border: 1px solid var(--navy);
-            font-size: 0.9rem;
+            padding: 12px 22px;
+            border-radius: 5px;
+            font-size: 0.92rem;
             font-weight: 600;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
         }
 
         .button-primary {
             background: var(--navy);
             color: var(--white);
+            border: 1px solid var(--navy);
         }
 
         .button-primary:hover {
             background: var(--dark-mauve);
             border-color: var(--dark-mauve);
-            transform: translateY(-2px);
+        }
+
+        .button-secondary {
+            color: var(--navy);
+            border: 1px solid var(--navy);
+            background: transparent;
         }
 
         .button-secondary:hover {
             background: var(--mauve);
             border-color: var(--mauve);
-            transform: translateY(-2px);
         }
 
         /* Portrait */
 
-        .portrait-column {
+        .hero-image {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .portrait-frame {
-            width: min(100%, 350px);
-            aspect-ratio: 0.79;
+            width: 100%;
+            max-width: 390px;
+            aspect-ratio: 4 / 5;
             overflow: hidden;
-            border-radius: 180px 180px 12px 12px;
-            background: #E7DDE5;
-            border: 8px solid rgba(255, 255, 255, 0.65);
-            box-shadow: 0 20px 60px rgba(32, 35, 51, 0.10);
+            border-radius: 190px 190px 8px 8px;
+            background: var(--mauve);
+            border: 8px solid var(--white);
+            box-shadow: 0 18px 45px rgba(32, 35, 51, 0.10);
         }
 
         .portrait-frame img {
-            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            display: block;
         }
 
         .portrait-caption {
-            text-align: center;
-            margin-top: 24px;
+            width: 100%;
+            max-width: 390px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 18px;
         }
 
         .portrait-caption p {
-            color: var(--muted);
-            font-size: 0.9rem;
-            letter-spacing: 0.4px;
+            color: var(--dark-mauve);
+            font-size: 0.85rem;
+            white-space: nowrap;
         }
 
         .portrait-line {
-            width: 45px;
-            height: 2px;
-            margin: 15px auto 0;
-            background: var(--teal);
+            height: 1px;
+            flex: 1;
+            background: var(--mauve);
         }
 
-        /* Lower-page section preview */
+        /* Section previews */
 
         .section-preview {
-            padding: 65px 8%;
-            background: #EFEBE8;
-            text-align: center;
+            padding: 70px 0;
+            border-top: 1px solid rgba(32, 35, 51, 0.12);
         }
 
-        .section-preview p {
-            max-width: 620px;
-            margin: 12px auto 0;
-            color: #626270;
+        .section-heading {
+            margin-bottom: 35px;
         }
 
-        .section-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-top: 28px;
+        .section-heading .eyebrow {
+            margin-bottom: 10px;
         }
 
-        .section-links a {
-            padding: 10px 18px;
-            border: 1px solid rgba(32, 35, 51, 0.25);
-            font-size: 0.9rem;
-            transition: all 0.25s ease;
+        .section-heading h2 {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            line-height: 1.2;
+            color: var(--navy);
         }
 
-        .section-links a:hover {
-            background: var(--navy);
-            color: var(--white);
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .preview-card {
+            padding: 28px;
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid rgba(32, 35, 51, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(32, 35, 51, 0.08);
+        }
+
+        .preview-card .number {
+            color: var(--dark-mauve);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .preview-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .preview-card p {
+            color: #626371;
+            font-size: 0.94rem;
+        }
+
+        .text-link {
+            display: inline-block;
+            margin-top: 17px;
+            color: var(--dark-mauve);
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
         }
 
         /* Footer */
 
         footer {
-            padding: 25px 8%;
+            padding: 28px 0;
+            border-top: 1px solid rgba(32, 35, 51, 0.12);
             text-align: center;
-            font-size: 0.82rem;
-            color: var(--muted);
+            color: #626371;
+            font-size: 0.85rem;
         }
 
         /* Responsive layout */
 
-        @media (max-width: 900px) {
-            header {
-                padding: 22px 6%;
-            }
-
-            nav {
-                gap: 15px;
-            }
-
+        @media (max-width: 850px) {
             .hero {
-                padding: 65px 7%;
-                grid-template-columns: 1fr 0.8fr;
+                grid-template-columns: 1fr 0.75fr;
                 gap: 35px;
             }
 
-            .portrait-frame {
-                width: min(100%, 300px);
+            .nav-links {
+                gap: 16px;
             }
 
-            .intro {
-                font-size: 0.94rem;
+            .preview-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
-        @media (max-width: 680px) {
+        @media (max-width: 650px) {
             header {
-                align-items: flex-start;
+                padding: 18px 0;
+            }
+
+            nav {
                 flex-direction: column;
                 gap: 15px;
             }
 
-            nav {
-                justify-content: flex-start;
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
                 gap: 12px 20px;
             }
 
             .hero {
                 min-height: auto;
-                padding: 55px 7% 65px;
                 grid-template-columns: 1fr;
-                gap: 50px;
+                gap: 40px;
+                padding-top: 45px;
+                padding-bottom: 55px;
             }
 
             .hero h1 {
-                font-size: clamp(2.8rem, 11vw, 4rem);
+                font-size: clamp(3rem, 12vw, 4.5rem);
             }
 
-            .portrait-column {
-                grid-row: 1;
+            .hero-image {
+                max-width: 390px;
+                width: 100%;
+                margin: 0 auto;
             }
 
-            .portrait-frame {
-                width: min(82%, 310px);
-            }
-
-            .intro {
-                font-size: 0.96rem;
+            .preview-grid {
+                grid-template-columns: 1fr;
             }
 
             .section-preview {
-                padding: 50px 7%;
+                padding: 50px 0;
             }
         }
     </style>
@@ -321,20 +371,26 @@
 
 <body>
 
+    <!-- Navigation -->
     <header>
-        <a href="#home" class="logo">SN.</a>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">SN.</a>
 
-        <nav aria-label="Main navigation">
-            <a href="#home">Home</a>
-            <a href="education.html">Education</a>
-            <a href="#projects">Projects</a>
-            <a href="#research">Research</a>
-            <a href="#experience">Experience</a>
-        </nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section class="hero" id="home">
+        <!-- Home / Introduction -->
+        <section class="container hero" id="home">
 
             <div class="hero-content">
                 <p class="eyebrow">Engineering · Research · Innovation</p>
@@ -348,7 +404,11 @@
                     Mechanical Engineer · Robotics M2 Student
                 </p>
 
-                <p class="intro">
+                <p class="hero-tagline">
+                    Engineering robotics <em>that makes a difference.</em>
+                </p>
+
+                <p class="hero-description">
                     I'm a mechanical engineer pursuing an M2 in Mechatronics,
                     Artificial Intelligence and Robotic Systems at Sorbonne
                     Université, specializing in collaborative robotics.
@@ -366,27 +426,24 @@
                         Explore Projects
                     </a>
 
-                    <a
-                        href="CV-Stephanie-Naous.pdf"
-                        class="button button-secondary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <a href="CV-Stephanie-Naous.pdf"
+                       class="button button-secondary"
+                       target="_blank"
+                       rel="noopener noreferrer">
                         View My CV
                     </a>
 
-                    <a href="contact.html" class="button button-secondary">
+                    <a href="contact.html"
+                       class="button button-secondary">
                         Contact Me
                     </a>
                 </div>
             </div>
 
-            <div class="portrait-column">
+            <div class="hero-image">
                 <div class="portrait-frame">
-                    <img
-                        src="stephaniena.jpeg"
-                        alt="Portrait of Stephanie Naous"
-                    >
+                    <img src="stephaniena.jpeg"
+                         alt="Portrait of Stephanie Naous">
                 </div>
 
                 <div class="portrait-caption">
@@ -397,26 +454,58 @@
 
         </section>
 
-        <section class="section-preview">
-            <p class="eyebrow">Discover My Work</p>
-            <h2>Engineering, research and innovation</h2>
+        <!-- Section previews -->
+        <section class="section-preview" id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">What I Do</p>
+                    <h2>Engineering, Research & Projects</h2>
+                </div>
 
-            <p>
-                Explore my academic background, robotics projects,
-                research experience and engineering journey.
-            </p>
+                <div class="preview-grid">
 
-            <div class="section-links">
-                <a href="education.html">Education</a>
-                <a href="#projects">Projects</a>
-                <a href="#research">Research</a>
-                <a href="#experience">Experience</a>
+                    <article class="preview-card">
+                        <p class="number">01 / EDUCATION</p>
+                        <h3>Academic Background</h3>
+                        <p>
+                            My academic journey in mechanical engineering
+                            and robotics, combining engineering fundamentals
+                            with intelligent robotic systems.
+                        </p>
+                        <a href="education.html" class="text-link">
+                            Explore Education →
+                        </a>
+                    </article>
+
+                    <article class="preview-card" id="research">
+                        <p class="number">02 / RESEARCH</p>
+                        <h3>Robotics Research</h3>
+                        <p>
+                            Exploring wearable robotics, sensing, control,
+                            and technologies that support human interaction
+                            and rehabilitation.
+                        </p>
+                    </article>
+
+                    <article class="preview-card" id="experience">
+                        <p class="number">03 / EXPERIENCE</p>
+                        <h3>Engineering Experience</h3>
+                        <p>
+                            Applying engineering knowledge through hands-on
+                            projects, technical problem-solving, and
+                            industrial experience.
+                        </p>
+                    </article>
+
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 Stephanie Naous · Robotics Engineering Portfolio</p>
+        <div class="container">
+            <p>© 2026 Stephanie Naous · Engineering with purpose.</p>
+        </div>
     </footer>
 
 </body>
