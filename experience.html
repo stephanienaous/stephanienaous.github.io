@@ -193,15 +193,14 @@
             align-items: start;
         }
 
-        /* Images: preserve their original proportions */
+        /* Images: smaller display area, original proportions preserved */
 
         .entry-image {
             display: block;
             width: 100%;
-            height: auto;
-            max-height: none;
+            height: 400px;
             object-fit: contain;
-            object-position: center;
+            object-position: top center;
             border-radius: 9px;
         }
 
@@ -386,12 +385,13 @@
                 gap: 22px;
             }
 
-            /* Keep each image at its natural height on mobile */
+            /* Smaller images on mobile */
 
             .entry-image {
                 width: 100%;
-                height: auto;
-                max-height: none;
+                height: 350px;
+                object-fit: contain;
+                object-position: top center;
             }
 
             .additional-section {
