@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional experience of Stephanie Naous, mechanical engineer and robotics M2 student at Sorbonne Université.">
     <title>Experience | Stephanie Naous</title>
 
     <style>
@@ -14,12 +15,13 @@
             --dark-mauve: #8C667F;
             --teal: #91B9B5;
             --white: #FFFFFF;
+            --muted: #626371;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         html {
@@ -27,9 +29,9 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
             background: var(--ivory);
             color: var(--navy);
+            font-family: Arial, Helvetica, sans-serif;
             line-height: 1.7;
         }
 
@@ -46,36 +48,34 @@
         /* Navigation */
 
         header {
-            width: 100%;
-            padding: 22px 0;
-            background: var(--ivory);
-            border-bottom: 1px solid rgba(32, 35, 51, 0.08);
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(32, 35, 51, 0.12);
         }
 
         nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 25px;
+            gap: 24px;
         }
 
         .brand {
-            color: var(--navy);
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.3rem;
+            font-weight: bold;
+            white-space: nowrap;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
+            justify-content: flex-end;
             flex-wrap: wrap;
-            gap: 28px;
-            list-style: none;
+            gap: 24px;
         }
 
         .nav-links a {
-            font-size: 0.93rem;
+            font-size: 0.9rem;
             transition: color 0.2s ease;
         }
 
@@ -84,33 +84,41 @@
             color: var(--dark-mauve);
         }
 
+        .nav-links a.active {
+            font-weight: 700;
+        }
+
         /* Page introduction */
 
         .page-intro {
-            padding: 75px 0 55px;
+            padding: 76px 0 56px;
+            max-width: 800px;
         }
 
         .eyebrow {
             color: var(--dark-mauve);
-            text-transform: uppercase;
-            letter-spacing: 3px;
             font-size: 0.78rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
         }
 
-        .page-intro h1 {
+        h1, h2, h3 {
             font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2.6rem, 5vw, 4rem);
-            line-height: 1.15;
-            margin-bottom: 20px;
-            color: var(--navy);
+            line-height: 1.2;
         }
 
-        .page-intro .intro-text {
-            max-width: 760px;
-            color: #555766;
-            font-size: 1.02rem;
+        h1 {
+            font-size: clamp(3rem, 6vw, 4.7rem);
+            letter-spacing: -1.5px;
+            margin-bottom: 22px;
+        }
+
+        .page-intro > p:last-child {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 680px;
         }
 
         /* Experience timeline */
@@ -121,172 +129,186 @@
 
         .timeline {
             position: relative;
-            margin-left: 12px;
-            padding-left: 35px;
-            border-left: 2px solid var(--mauve);
+            padding-left: 38px;
         }
 
-        .experience-entry {
-            position: relative;
-            margin-bottom: 55px;
-        }
-
-        .experience-entry:last-child {
-            margin-bottom: 0;
-        }
-
-        .experience-entry::before {
+        .timeline::before {
             content: "";
             position: absolute;
-            left: -44px;
-            top: 7px;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--dark-mauve);
-            border: 4px solid var(--ivory);
-            box-shadow: 0 0 0 1px var(--dark-mauve);
+            left: 7px;
+            top: 10px;
+            bottom: 15px;
+            width: 2px;
+            background: var(--mauve);
         }
 
-        .entry-layout {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 35px;
-            align-items: start;
+        .timeline-entry {
+            position: relative;
+            padding-bottom: 72px;
+        }
+
+        .timeline-entry:last-child {
+            padding-bottom: 25px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -38px;
+            top: 6px;
+            width: 17px;
+            height: 17px;
+            border: 4px solid var(--ivory);
+            border-radius: 50%;
+            background: var(--dark-mauve);
+            box-sizing: content-box;
         }
 
         .entry-date {
-            display: inline-block;
             color: var(--dark-mauve);
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 10px;
         }
 
-        .entry-content h2 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(1.55rem, 2.5vw, 2rem);
-            line-height: 1.3;
+        .entry-heading {
+            margin-bottom: 25px;
+        }
+
+        .entry-heading h2 {
+            font-size: clamp(1.7rem, 3vw, 2.35rem);
             margin-bottom: 8px;
         }
 
         .entry-location {
-            color: #626371;
-            font-size: 0.94rem;
-            margin-bottom: 20px;
+            color: var(--muted);
+            font-size: 0.95rem;
         }
 
-        .entry-content ul {
-            padding-left: 20px;
-            margin-bottom: 20px;
+        .entry-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 36px;
+            align-items: start;
         }
-
-        .entry-content li {
-            padding-left: 3px;
-            margin-bottom: 12px;
-            color: #454654;
-            font-size: 0.96rem;
-        }
-
-        .entry-content li::marker {
-            color: var(--dark-mauve);
-        }
-
-        /* Technical tags */
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 18px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: rgba(201, 168, 200, 0.22);
-            color: var(--navy);
-            border: 1px solid rgba(140, 102, 127, 0.18);
-            border-radius: 20px;
-            padding: 5px 12px;
-            font-size: 0.78rem;
-        }
-
-        /* Internship photos */
 
         .entry-image {
             width: 100%;
             height: auto;
             max-height: 520px;
-            object-fit: contain;
             display: block;
-            background: var(--white);
-            border: 7px solid var(--white);
-            border-radius: 8px;
-            box-shadow: 0 12px 30px rgba(32, 35, 51, 0.08);
+            object-fit: contain;
+            object-position: top center;
+            border-radius: 9px;
+            background: rgba(32, 35, 51, 0.04);
+        }
+
+        /* Slightly zoom the MEAG photo to reduce blank borders */
+        .meag-image {
+            transform: scale(1.035);
+            transform-origin: top center;
+        }
+
+        .entry-description {
+            color: var(--muted);
+            font-size: 0.98rem;
+            margin-bottom: 22px;
+        }
+
+        .highlights-label {
+            color: var(--navy);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 30px;
+            background: rgba(201, 168, 200, 0.25);
+            border: 1px solid rgba(140, 102, 127, 0.2);
+            color: var(--navy);
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+
+        .timeline-entry:nth-child(even) .timeline-dot {
+            background: #648F8B;
+        }
+
+        .timeline-entry:nth-child(even) .tag {
+            background: rgba(145, 185, 181, 0.22);
+            border-color: rgba(100, 143, 139, 0.25);
         }
 
         /* Additional experience */
 
         .additional-section {
-            padding: 65px 0 75px;
+            padding: 60px 0 85px;
             border-top: 1px solid rgba(32, 35, 51, 0.12);
         }
 
-        .section-heading {
+        .additional-heading {
             margin-bottom: 30px;
         }
 
-        .section-heading h2 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(1.9rem, 3.5vw, 2.6rem);
-            line-height: 1.25;
+        .additional-heading h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
         }
 
         .additional-card {
+            display: grid;
+            grid-template-columns: 65px 1fr;
+            align-items: start;
+            gap: 24px;
+            padding: 30px;
             background: var(--white);
-            padding: 28px 30px;
             border: 1px solid rgba(32, 35, 51, 0.08);
-            border-left: 4px solid var(--teal);
-            border-radius: 6px;
+            border-radius: 10px;
+        }
+
+        .additional-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(145, 185, 181, 0.22);
+            color: var(--navy);
+        }
+
+        .additional-icon svg {
+            width: 30px;
+            height: 30px;
         }
 
         .additional-card h3 {
-            font-size: 1.15rem;
-            margin-bottom: 5px;
+            font-size: 1.45rem;
+            margin-bottom: 6px;
         }
 
         .additional-date {
             color: var(--dark-mauve);
             font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
-        .additional-card p {
-            color: #555766;
-            font-size: 0.95rem;
-        }
-
-        /* Back to Home */
-
-        .back-section {
-            padding: 0 0 45px;
-            text-align: left;
-        }
-
-        .back-link {
-            display: inline-block;
-            color: var(--dark-mauve);
-            font-size: 0.95rem;
-            font-weight: 700;
-            transition: color 0.2s ease;
-        }
-
-        .back-link:hover {
-            color: var(--navy);
-            text-decoration: underline;
+        .additional-card p.description {
+            color: var(--muted);
+            max-width: 780px;
+            margin-bottom: 18px;
         }
 
         /* Footer */
@@ -294,9 +316,28 @@
         footer {
             padding: 25px 0;
             border-top: 1px solid rgba(32, 35, 51, 0.12);
-            text-align: center;
-            color: #626371;
-            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        footer p {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .footer-link {
+            color: var(--dark-mauve);
+            font-weight: 700;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
         }
 
         /* Responsive layout */
@@ -305,47 +346,66 @@
             nav {
                 align-items: flex-start;
                 flex-direction: column;
-                gap: 16px;
             }
 
             .nav-links {
+                justify-content: flex-start;
                 gap: 12px 20px;
             }
 
-            .entry-layout {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .entry-image {
-                max-width: 600px;
+            .entry-content {
+                gap: 24px;
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 620px) {
+            .container {
+                width: 90%;
+            }
+
             .page-intro {
-                padding: 50px 0 40px;
+                padding: 55px 0 40px;
             }
 
             .timeline {
-                margin-left: 5px;
-                padding-left: 25px;
+                padding-left: 27px;
             }
 
-            .experience-entry::before {
-                left: -34px;
+            .timeline-dot {
+                left: -30px;
             }
 
-            .experience-entry {
-                margin-bottom: 42px;
+            .timeline::before {
+                left: 5px;
+            }
+
+            .timeline-entry {
+                padding-bottom: 52px;
+            }
+
+            .entry-content {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .entry-image {
+                max-height: none;
             }
 
             .additional-section {
-                padding: 45px 0 55px;
+                padding: 45px 0 60px;
             }
 
             .additional-card {
-                padding: 22px;
+                grid-template-columns: 1fr;
+                padding: 23px;
+                gap: 17px;
+            }
+
+            .footer-content {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
             }
         }
     </style>
@@ -359,13 +419,13 @@
             <nav>
                 <a href="index.html" class="brand">SN.</a>
 
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="education.html">Education</a></li>
-                    <li><a href="index.html#projects">Projects</a></li>
-                    <li><a href="index.html#research">Research</a></li>
-                    <li><a href="experience.html" class="active">Experience</a></li>
-                </ul>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="education.html">Education</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#research">Research</a>
+                    <a href="experience.html" class="active">Experience</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -373,119 +433,114 @@
     <main>
 
         <!-- Page Introduction -->
-        <section class="container page-intro">
-            <p class="eyebrow">Professional Experience</p>
-            <h1>Experience</h1>
-            <p class="intro-text">
-                My industry experience has allowed me to apply engineering
-                principles in practical environments, gain hands-on exposure
-                to industrial systems, and develop my understanding of
-                maintenance, manufacturing, and technical problem-solving.
-            </p>
+        <section class="container">
+            <div class="page-intro">
+                <p class="eyebrow">Professional Journey</p>
+                <h1>Experience</h1>
+                <p>
+                    Building practical engineering experience across industrial
+                    manufacturing, electromechanical systems, and hands-on
+                    mechatronics education.
+                </p>
+            </div>
         </section>
 
-        <!-- Internship Timeline -->
-        <section class="container experience-section">
-            <div class="timeline">
+        <!-- Professional Experience Timeline -->
+        <section class="experience-section">
+            <div class="container">
+                <div class="timeline">
 
-                <!-- MEAG -->
-                <article class="experience-entry">
-                    <div class="entry-layout">
+                    <!-- MEAG -->
+                    <article class="timeline-entry">
+                        <span class="timeline-dot"></span>
 
-                        <div class="entry-content">
-                            <span class="entry-date">July – August 2025</span>
+                        <p class="entry-date">July – August 2025</p>
 
-                            <h2>Middle East Airlines Ground Handling (MEAG)</h2>
-
+                        <div class="entry-heading">
+                            <h2>Middle East Airlines Ground Handling</h2>
                             <p class="entry-location">
-                                Beirut, Lebanon
+                                MEAG · Beirut, Lebanon
                             </p>
-
-                            <ul>
-                                <li>
-                                    Assisted in the maintenance, troubleshooting,
-                                    and performance evaluation of ground service
-                                    vehicles and equipment, working with
-                                    mechanical, electrical, and control systems
-                                    to support operational readiness.
-                                </li>
-                                <li>
-                                    Gained hands-on exposure to PLCs, sensors,
-                                    and electromechanical systems through
-                                    equipment inspections, fault diagnostics,
-                                    and safety compliance procedures.
-                                </li>
-                            </ul>
-
-                            <div class="tags">
-                                <span class="tag">Maintenance</span>
-                                <span class="tag">Troubleshooting</span>
-                                <span class="tag">PLCs</span>
-                                <span class="tag">Sensors</span>
-                                <span class="tag">Fault Diagnostics</span>
-                            </div>
                         </div>
 
-                        <div class="entry-visual">
+                        <div class="entry-content">
                             <img
                                 src="MEAG.jpeg"
-                                alt="Experience at Middle East Airlines Ground Handling"
-                                class="entry-image"
+                                alt="Ground handling equipment at Middle East Airlines"
+                                class="entry-image meag-image"
+                                loading="lazy"
                             >
+
+                            <div>
+                                <p class="entry-description">
+                                    Assisted in the maintenance, troubleshooting,
+                                    and performance evaluation of ground service
+                                    vehicles and equipment. Worked around
+                                    mechanical, electrical, and control systems
+                                    supporting operational readiness, with
+                                    exposure to equipment inspections, fault
+                                    diagnostics, and safety procedures.
+                                </p>
+
+                                <p class="highlights-label">Technical Highlights</p>
+                                <div class="tags">
+                                    <span class="tag">PLCs</span>
+                                    <span class="tag">Sensors</span>
+                                    <span class="tag">Electromechanical Systems</span>
+                                    <span class="tag">Fault Diagnostics</span>
+                                    <span class="tag">Equipment Maintenance</span>
+                                    <span class="tag">Safety Procedures</span>
+                                </div>
+                            </div>
                         </div>
+                    </article>
 
-                    </div>
-                </article>
+                    <!-- Interplast -->
+                    <article class="timeline-entry">
+                        <span class="timeline-dot"></span>
 
-                <!-- Interplast -->
-                <article class="experience-entry">
-                    <div class="entry-layout">
+                        <p class="entry-date">May – July 2025</p>
 
-                        <div class="entry-content">
-                            <span class="entry-date">May – July 2025</span>
-
+                        <div class="entry-heading">
                             <h2>Interplast Co. Ltd.</h2>
-
                             <p class="entry-location">
                                 Dubai Investment Park, UAE
                             </p>
-
-                            <ul>
-                                <li>
-                                    Monitored machine parameters and analyzed
-                                    production data to identify process
-                                    inefficiencies, improve manufacturing
-                                    performance, and support workflow continuity
-                                    and equipment reliability.
-                                </li>
-                                <li>
-                                    Assisted with quality control by evaluating
-                                    product conformity to specifications and
-                                    supporting improvement efforts to maintain
-                                    production standards and efficiency.
-                                </li>
-                            </ul>
-
-                            <div class="tags">
-                                <span class="tag">Manufacturing</span>
-                                <span class="tag">Quality Control</span>
-                                <span class="tag">Production Data</span>
-                                <span class="tag">Process Improvement</span>
-                                <span class="tag">Equipment Reliability</span>
-                            </div>
                         </div>
 
-                        <div class="entry-visual">
+                        <div class="entry-content">
                             <img
                                 src="Interplast.jpeg"
-                                alt="Experience at Interplast Co. Ltd."
+                                alt="Industrial manufacturing environment at Interplast"
                                 class="entry-image"
+                                loading="lazy"
                             >
+
+                            <div>
+                                <p class="entry-description">
+                                    Monitored machine parameters and analyzed
+                                    production data to identify process
+                                    inefficiencies, support workflow continuity,
+                                    and improve equipment reliability. Assisted
+                                    with quality control procedures and product
+                                    conformity checks to support manufacturing
+                                    efficiency and consistent production standards.
+                                </p>
+
+                                <p class="highlights-label">Technical Highlights</p>
+                                <div class="tags">
+                                    <span class="tag">Process Monitoring</span>
+                                    <span class="tag">Production Data Analysis</span>
+                                    <span class="tag">Quality Control</span>
+                                    <span class="tag">Manufacturing Processes</span>
+                                    <span class="tag">Process Improvement</span>
+                                    <span class="tag">Equipment Reliability</span>
+                                </div>
+                            </div>
                         </div>
+                    </article>
 
-                    </div>
-                </article>
-
+                </div>
             </div>
         </section>
 
@@ -493,39 +548,60 @@
         <section class="additional-section">
             <div class="container">
 
-                <div class="section-heading">
-                    <p class="eyebrow">Additional Experience</p>
-                    <h2>Engineering Summer Camp</h2>
+                <div class="additional-heading">
+                    <p class="eyebrow">Beyond Industry</p>
+                    <h2>Additional Experience</h2>
                 </div>
 
                 <article class="additional-card">
-                    <h3>Engineering Summer Camp Assistant</h3>
+                    <div class="additional-icon">
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <rect x="7" y="7" width="10" height="10" rx="2"></rect>
+                            <path d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"></path>
+                            <path d="M10 10h4v4h-4z"></path>
+                        </svg>
+                    </div>
 
-                    <p class="additional-date">Summer 2024</p>
+                    <div>
+                        <h3>Engineering Summer Camp</h3>
+                        <p class="additional-date">
+                            Summer 2024 · Mechatronics Laboratory
+                        </p>
 
-                    <p>
-                        Assisted and monitored high-school students in the
-                        mechatronics laboratory as they worked on sensor
-                        control and coding and implemented small engineering
-                        projects.
-                    </p>
+                        <p class="description">
+                            Monitored and guided student groups in the
+                            mechatronics laboratory as they worked on sensor
+                            control, coding, and the implementation of small
+                            engineering projects.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Mechatronics</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Coding</span>
+                            <span class="tag">Student Guidance</span>
+                        </div>
+                    </div>
                 </article>
 
             </div>
         </section>
 
-        <!-- Back to Home: aligned left -->
-        <section class="container back-section">
-            <a href="index.html" class="back-link">
-                ← Back to Home
-            </a>
-        </section>
-
     </main>
 
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>© 2026 Stephanie Naous · Engineering with purpose.</p>
+        <div class="container footer-content">
+            <p>© 2026 Stephanie Naous</p>
+            <a href="index.html" class="footer-link">← Back to Home</a>
         </div>
     </footer>
 
