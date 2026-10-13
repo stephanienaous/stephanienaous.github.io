@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -193,17 +193,16 @@
             align-items: start;
         }
 
-        /* Identical portrait frames for both photos */
+        /* Images: preserve their original proportions */
 
         .entry-image {
+            display: block;
             width: 100%;
             height: auto;
-            max-height: 520px;
-            display: block;
+            max-height: none;
             object-fit: contain;
-            object-position: top center;
+            object-position: center;
             border-radius: 9px;
-            background: transparent;
         }
 
         .entry-description {
@@ -387,14 +386,12 @@
                 gap: 22px;
             }
 
-            /* Same portrait ratio on mobile */
+            /* Keep each image at its natural height on mobile */
 
             .entry-image {
                 width: 100%;
-                aspect-ratio: 4 / 5;
                 height: auto;
-                object-fit: contain;
-                object-position: center;
+                max-height: none;
             }
 
             .additional-section {
@@ -615,3 +612,4 @@
 
 </body>
 </html>
+```
