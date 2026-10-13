@@ -193,11 +193,12 @@
             align-items: start;
         }
 
-        /* Both photos use the same dimensions and are not cropped */
+        /* Identical portrait frames for both photos */
 
         .entry-image {
             width: 100%;
-            height: 540px;
+            aspect-ratio: 4 / 5;
+            height: auto;
             display: block;
             object-fit: contain;
             object-position: center;
@@ -318,22 +319,18 @@
             font-size: 0.82rem;
         }
 
-        /* Back to Home stays fixed on the left while scrolling */
+        /* Back to Home: bottom-left of the page, not fixed */
 
         .footer-link {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            z-index: 1000;
             display: inline-block;
+            margin: 20px 0 25px 6%;
             padding: 10px 15px;
             color: var(--dark-mauve);
-            background: var(--ivory);
+            background: transparent;
             border: 1px solid rgba(140, 102, 127, 0.3);
             border-radius: 8px;
             font-size: 0.88rem;
             font-weight: 700;
-            box-shadow: 0 3px 12px rgba(32, 35, 51, 0.08);
             transition: background 0.2s ease, color 0.2s ease;
         }
 
@@ -357,10 +354,6 @@
 
             .entry-content {
                 gap: 24px;
-            }
-
-            .entry-image {
-                height: 500px;
             }
         }
 
@@ -394,14 +387,14 @@
                 gap: 22px;
             }
 
-            /* Same photo dimensions on mobile too */
+            /* Same portrait ratio on mobile */
 
             .entry-image {
                 width: 100%;
-                height: 390px;
+                aspect-ratio: 4 / 5;
+                height: auto;
                 object-fit: contain;
                 object-position: center;
-                background: transparent;
             }
 
             .additional-section {
@@ -415,14 +408,7 @@
             }
 
             .footer-link {
-                left: 12px;
-                bottom: 12px;
-                padding: 9px 12px;
-                font-size: 0.82rem;
-            }
-
-            footer {
-                padding-bottom: 65px;
+                margin-left: 5%;
             }
         }
     </style>
@@ -624,7 +610,7 @@
         </div>
     </footer>
 
-    <!-- Fixed Back to Home link -->
+    <!-- Back to Home at the bottom-left -->
     <a href="index.html" class="footer-link">← Back to Home</a>
 
 </body>
