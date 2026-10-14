@@ -305,30 +305,38 @@
             margin-bottom: 18px;
         }
 
-        /* Footer */
 
-        footer {
-            padding: 25px 0;
-            border-top: 1px solid rgba(32, 35, 51, 0.12);
-        }
+/* Footer */
 
-        .footer-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
+footer {
+    padding: 28px 0;
+    border-top: 1px solid rgba(32, 35, 51, 0.12);
+    text-align: center;
+    color: #626371;
+    font-size: 0.85rem;
+}
 
-        footer p {
-            color: var(--muted);
-            font-size: 0.82rem;
-        }
+.footer-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+}
 
-        .footer-link {
-            color: var(--dark-mauve);
-            font-weight: 700;
-        }
+footer p {
+    color: #626371;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.footer-link {
+    position: absolute;
+    right: 0;
+    color: var(--dark-mauve);
+    font-weight: 700;
+}
+
 
         /* Responsive layout */
 
@@ -391,11 +399,16 @@
                 padding: 23px;
                 gap: 17px;
             }
-
+            
             .footer-content {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                gap: 12px;
             }
+
+.footer-link {
+    position: static;
+}
         }
     </style>
 </head>
@@ -589,7 +602,7 @@
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
-            <p>© 2026 Stephanie Naous</p>
+            <p>© 2026 Stephanie Naous · Engineering with purpose.</p>
             <a href="index.html" class="footer-link">Back to Home →</a>
         </div>
     </footer>
