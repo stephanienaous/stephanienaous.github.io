@@ -12,7 +12,6 @@
             --navy: #202333;
             --mauve: #C9A8C8;
             --dark-mauve: #8C667F;
-            --teal: #91B9B5;
             --white: #FFFFFF;
         }
 
@@ -58,13 +57,13 @@
             gap: 25px;
         }
 
-.logo {
-    color: var(--dark-mauve);
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 1.55rem;
-    font-weight: 750;
-    letter-spacing: -1px;
-}
+        .logo {
+            color: var(--dark-mauve);
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 1.55rem;
+            font-weight: 750;
+            letter-spacing: -1px;
+        }
 
         .nav-links {
             display: flex;
@@ -222,15 +221,15 @@
             display: block;
         }
 
-        /* Discover My Work section */
+        /* Discover My Work */
 
         .section-preview {
-            padding: 80px 0;
+            padding: 65px 0 75px;
             border-top: 1px solid rgba(32, 35, 51, 0.12);
         }
 
         .section-heading {
-            margin-bottom: 38px;
+            margin-bottom: 28px;
         }
 
         .section-heading .eyebrow {
@@ -242,60 +241,63 @@
             font-size: clamp(2rem, 3.5vw, 3rem);
             line-height: 1.2;
             color: var(--navy);
+            font-weight: 400;
         }
 
-        .preview-grid {
+        .preview-list {
+            max-width: 850px;
+            border-top: 1px solid rgba(32, 35, 51, 0.16);
+        }
+
+        .preview-link {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 48px 1fr 30px;
+            align-items: center;
             gap: 20px;
+            padding: 19px 12px;
+            border-bottom: 1px solid rgba(32, 35, 51, 0.16);
+            transition: background 0.25s ease, padding 0.25s ease;
         }
 
-        .preview-card {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 25px;
-            background: var(--white);
-            border-radius: 8px;
-            border: 1px solid rgba(32, 35, 51, 0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        .preview-link:hover {
+            background: rgba(201, 168, 200, 0.13);
+            padding-left: 19px;
+            padding-right: 19px;
         }
 
-        .preview-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(32, 35, 51, 0.08);
-        }
-
-        .preview-card .number {
+        .preview-number {
             color: var(--dark-mauve);
             font-size: 0.78rem;
             font-weight: 700;
             letter-spacing: 1px;
-            margin-bottom: 14px;
         }
 
-        .preview-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 12px;
+        .preview-title {
+            color: var(--navy);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+            font-weight: 400;
+            transition: color 0.2s ease;
         }
 
-        .preview-card p.card-description {
-            color: #626371;
-            font-size: 0.92rem;
-            line-height: 1.7;
-        }
-
-        .text-link {
-            display: inline-block;
-            margin-top: auto;
-            padding-top: 20px;
+        .preview-link:hover .preview-title {
             color: var(--dark-mauve);
-            font-weight: 700;
-            font-size: 0.9rem;
         }
 
-        .text-link:hover {
-            text-decoration: underline;
+        .preview-arrow {
+            color: var(--dark-mauve);
+            font-size: 1.35rem;
+            text-align: right;
+            transition: transform 0.25s ease;
+        }
+
+        .preview-link:hover .preview-arrow {
+            transform: translate(3px, -3px);
+        }
+
+        .preview-link:focus-visible {
+            outline: 2px solid var(--dark-mauve);
+            outline-offset: 3px;
         }
 
         /* Footer */
@@ -311,10 +313,6 @@
         /* Responsive layout */
 
         @media (max-width: 1000px) {
-            .preview-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .hero {
                 gap: 35px;
             }
@@ -364,12 +362,39 @@
                 margin: 0 auto;
             }
 
-            .preview-grid {
-                grid-template-columns: 1fr;
+            .section-preview {
+                padding: 50px 0 60px;
             }
 
-            .section-preview {
-                padding: 55px 0;
+            .section-heading {
+                margin-bottom: 23px;
+            }
+
+            .preview-link {
+                grid-template-columns: 35px 1fr 24px;
+                gap: 12px;
+                padding: 17px 5px;
+            }
+
+            .preview-link:hover {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .preview-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -456,66 +481,39 @@
         </section>
 
         <!-- Discover My Work -->
-        <section class="section-preview" id="projects">
+        <section class="section-preview" id="discover">
             <div class="container">
 
                 <div class="section-heading">
-                    <p class="eyebrow">Discover My Work</p>
-                    <h2>Engineering, Research and Innovation</h2>
+                    <p class="eyebrow">Explore My Portfolio</p>
+                    <h2>Discover My Work</h2>
                 </div>
 
-                <div class="preview-grid">
+                <div class="preview-list">
 
-                    <article class="preview-card" id="education">
-                        <p class="number">01 / EDUCATION</p>
-                        <h3>Education</h3>
-                        <p class="card-description">
-                            My academic journey in mechanical engineering
-                            and robotics, combining engineering fundamentals
-                            with intelligent robotic systems.
-                        </p>
-                        <a href="education.html" class="text-link">
-                            Explore Education →
-                        </a>
-                    </article>
+                    <a href="education.html" class="preview-link">
+                        <span class="preview-number">01</span>
+                        <span class="preview-title">Education</span>
+                        <span class="preview-arrow" aria-hidden="true">↗</span>
+                    </a>
 
-                    <article class="preview-card" id="project-work">
-                        <p class="number">02 / PROJECTS</p>
-                        <h3>Projects</h3>
-                        <p class="card-description">
-                            Hands-on engineering projects that bring together
-                            mechanical design, control, and robotics.
-                        </p>
-                        <a href="#project-work" class="text-link">
-                            Explore Projects →
-                        </a>
-                    </article>
+                    <a href="#project-work" class="preview-link">
+                        <span class="preview-number">02</span>
+                        <span class="preview-title">Projects</span>
+                        <span class="preview-arrow" aria-hidden="true">↗</span>
+                    </a>
 
-                    <article class="preview-card" id="research">
-                        <p class="number">03 / RESEARCH</p>
-                        <h3>Research</h3>
-                        <p class="card-description">
-                            Exploring wearable robotics, sensing, control,
-                            and technologies that support human interaction
-                            and rehabilitation.
-                        </p>
-                        <a href="#research" class="text-link">
-                            Explore Research →
-                        </a>
-                    </article>
+                    <a href="#research" class="preview-link">
+                        <span class="preview-number">03</span>
+                        <span class="preview-title">Research</span>
+                        <span class="preview-arrow" aria-hidden="true">↗</span>
+                    </a>
 
-                    <article class="preview-card" id="experience">
-                        <p class="number">04 / EXPERIENCE</p>
-                        <h3>Experience</h3>
-                        <p class="card-description">
-                            Applying engineering knowledge through
-                            industrial internships, technical problem-solving,
-                            and practical experience.
-                        </p>
-                        <a href="experience.html" class="text-link">
-                            Explore Experience →
-                        </a>
-                    </article>
+                    <a href="experience.html" class="preview-link">
+                        <span class="preview-number">04</span>
+                        <span class="preview-title">Experience</span>
+                        <span class="preview-arrow" aria-hidden="true">↗</span>
+                    </a>
 
                 </div>
             </div>
