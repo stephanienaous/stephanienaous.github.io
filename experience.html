@@ -305,38 +305,33 @@
             margin-bottom: 18px;
         }
 
+        /* Back to Home link — matches Education page */
 
-/* Footer */
+        .back-link {
+            display: inline-block;
+            margin-top: 35px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--dark-mauve);
+            color: var(--dark-mauve);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
 
-footer {
-    padding: 28px 0;
-    border-top: 1px solid rgba(32, 35, 51, 0.12);
-    text-align: center;
-    color: #626371;
-    font-size: 0.85rem;
-}
+        /* Footer */
 
-.footer-content {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 24px;
-}
+        footer {
+            padding: 28px 0;
+            border-top: 1px solid rgba(32, 35, 51, 0.12);
+            text-align: center;
+            color: #626371;
+            font-size: 0.85rem;
+        }
 
-footer p {
-    color: #626371;
-    font-size: 0.85rem;
-    text-align: center;
-}
-
-.footer-link {
-    position: absolute;
-    right: 0;
-    color: var(--dark-mauve);
-    font-weight: 700;
-}
-
+        footer p {
+            color: #626371;
+            font-size: 0.85rem;
+            text-align: center;
+        }
 
         /* Responsive layout */
 
@@ -399,16 +394,6 @@ footer p {
                 padding: 23px;
                 gap: 17px;
             }
-            
-            .footer-content {
-                flex-direction: column;
-                align-items: center;
-                gap: 12px;
-            }
-
-.footer-link {
-    position: static;
-}
         }
     </style>
 </head>
@@ -597,13 +582,17 @@ footer p {
             </div>
         </section>
 
+        <!-- Back to Home: same style as Education -->
+        <section class="container">
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </section>
+
     </main>
 
     <!-- Footer -->
     <footer>
-        <div class="container footer-content">
+        <div class="container">
             <p>© 2026 Stephanie Naous · Engineering with purpose.</p>
-            <a href="index.html" class="footer-link">Back to Home →</a>
         </div>
     </footer>
 
