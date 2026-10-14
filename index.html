@@ -221,10 +221,10 @@
             display: block;
         }
 
-        /* Discover My Work */
+        /* Discover My Work section */
 
         .section-preview {
-            padding: 65px 0 75px;
+            padding: 65px 0;
             border-top: 1px solid rgba(32, 35, 51, 0.12);
         }
 
@@ -241,63 +241,56 @@
             font-size: clamp(2rem, 3.5vw, 3rem);
             line-height: 1.2;
             color: var(--navy);
-            font-weight: 400;
         }
 
-        .preview-list {
-            max-width: 850px;
-            border-top: 1px solid rgba(32, 35, 51, 0.16);
-        }
-
-        .preview-link {
+        .preview-grid {
             display: grid;
-            grid-template-columns: 48px 1fr 30px;
-            align-items: center;
-            gap: 20px;
-            padding: 19px 12px;
-            border-bottom: 1px solid rgba(32, 35, 51, 0.16);
-            transition: background 0.25s ease, padding 0.25s ease;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
         }
 
-        .preview-link:hover {
-            background: rgba(201, 168, 200, 0.13);
-            padding-left: 19px;
-            padding-right: 19px;
+        .preview-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 155px;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 6px;
+            border: 1px solid rgba(32, 35, 51, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .preview-number {
+        .preview-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(32, 35, 51, 0.08);
+        }
+
+        .preview-card .number {
             color: var(--dark-mauve);
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
-        .preview-title {
-            color: var(--navy);
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(1.2rem, 2.2vw, 1.55rem);
-            font-weight: 400;
+        .preview-card h3 {
+            font-size: 1.12rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .text-link {
+            display: inline-block;
+            margin-top: auto;
+            color: var(--dark-mauve);
+            font-weight: 700;
+            font-size: 0.86rem;
             transition: color 0.2s ease;
         }
 
-        .preview-link:hover .preview-title {
-            color: var(--dark-mauve);
-        }
-
-        .preview-arrow {
-            color: var(--dark-mauve);
-            font-size: 1.35rem;
-            text-align: right;
-            transition: transform 0.25s ease;
-        }
-
-        .preview-link:hover .preview-arrow {
-            transform: translate(3px, -3px);
-        }
-
-        .preview-link:focus-visible {
-            outline: 2px solid var(--dark-mauve);
-            outline-offset: 3px;
+        .text-link:hover {
+            color: var(--navy);
         }
 
         /* Footer */
@@ -313,6 +306,10 @@
         /* Responsive layout */
 
         @media (max-width: 1000px) {
+            .preview-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
             .hero {
                 gap: 35px;
             }
@@ -362,39 +359,36 @@
                 margin: 0 auto;
             }
 
-            .section-preview {
-                padding: 50px 0 60px;
-            }
-
-            .section-heading {
-                margin-bottom: 23px;
-            }
-
-            .preview-link {
-                grid-template-columns: 35px 1fr 24px;
+            .preview-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 12px;
-                padding: 17px 5px;
             }
 
-            .preview-link:hover {
-                padding-left: 10px;
-                padding-right: 10px;
+            .section-preview {
+                padding: 50px 0;
             }
 
-            .preview-title {
-                font-size: 1.2rem;
+            .preview-card {
+                min-height: 140px;
+                padding: 16px;
+            }
+
+            .preview-card h3 {
+                font-size: 1rem;
+            }
+
+            .text-link {
+                font-size: 0.8rem;
             }
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
+        @media (max-width: 380px) {
+            .preview-grid {
+                grid-template-columns: 1fr;
             }
 
-            *,
-            *::before,
-            *::after {
-                transition-duration: 0.01ms !important;
+            .preview-card {
+                min-height: 125px;
             }
         }
     </style>
@@ -453,7 +447,7 @@
                 </p>
 
                 <div class="hero-buttons">
-                    <a href="#projects" class="button button-primary">
+                    <a href="#project-work" class="button button-primary">
                         Explore Projects
                     </a>
 
@@ -481,39 +475,47 @@
         </section>
 
         <!-- Discover My Work -->
-        <section class="section-preview" id="discover">
+        <section class="section-preview" id="projects">
             <div class="container">
 
                 <div class="section-heading">
-                    <p class="eyebrow">Explore My Portfolio</p>
-                    <h2>Discover My Work</h2>
+                    <p class="eyebrow">Discover My Work</p>
+                    <h2>Engineering, Research and Innovation</h2>
                 </div>
 
-                <div class="preview-list">
+                <div class="preview-grid">
 
-                    <a href="education.html" class="preview-link">
-                        <span class="preview-number">01</span>
-                        <span class="preview-title">Education</span>
-                        <span class="preview-arrow" aria-hidden="true">↗</span>
-                    </a>
+                    <article class="preview-card" id="education">
+                        <p class="number">01 / EDUCATION</p>
+                        <h3>Education</h3>
+                        <a href="education.html" class="text-link">
+                            Explore Education →
+                        </a>
+                    </article>
 
-                    <a href="#project-work" class="preview-link">
-                        <span class="preview-number">02</span>
-                        <span class="preview-title">Projects</span>
-                        <span class="preview-arrow" aria-hidden="true">↗</span>
-                    </a>
+                    <article class="preview-card" id="project-work">
+                        <p class="number">02 / PROJECTS</p>
+                        <h3>Projects</h3>
+                        <a href="#project-work" class="text-link">
+                            Explore Projects →
+                        </a>
+                    </article>
 
-                    <a href="#research" class="preview-link">
-                        <span class="preview-number">03</span>
-                        <span class="preview-title">Research</span>
-                        <span class="preview-arrow" aria-hidden="true">↗</span>
-                    </a>
+                    <article class="preview-card" id="research">
+                        <p class="number">03 / RESEARCH</p>
+                        <h3>Research</h3>
+                        <a href="#research" class="text-link">
+                            Explore Research →
+                        </a>
+                    </article>
 
-                    <a href="experience.html" class="preview-link">
-                        <span class="preview-number">04</span>
-                        <span class="preview-title">Experience</span>
-                        <span class="preview-arrow" aria-hidden="true">↗</span>
-                    </a>
+                    <article class="preview-card" id="experience">
+                        <p class="number">04 / EXPERIENCE</p>
+                        <h3>Experience</h3>
+                        <a href="experience.html" class="text-link">
+                            Explore Experience →
+                        </a>
+                    </article>
 
                 </div>
             </div>
