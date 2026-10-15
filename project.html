@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,35 +48,37 @@
             font: inherit;
         }
 
-        /* Header */
+        /* Header — consistent with the Education page */
 
         header {
             padding: 25px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 25px;
+            gap: 30px;
+            border-bottom: 1px solid rgba(32, 35, 51, 0.08);
         }
 
         .logo {
+            color: var(--dark-mauve);
+            font-family: "Segoe UI", Arial, sans-serif;
             font-size: 1.55rem;
             font-weight: 750;
             letter-spacing: -1px;
-            color: var(--dark-mauve);
             flex-shrink: 0;
         }
 
         nav {
             display: flex;
-            align-items: center;
             flex-wrap: wrap;
+            justify-content: flex-end;
             gap: 27px;
         }
 
         nav a {
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             color: var(--navy);
-            transition: color 0.2s ease;
+            transition: color 0.25s ease;
         }
 
         nav a:hover,
@@ -154,23 +157,19 @@
             font-weight: 400;
         }
 
-        .project-count {
-            color: var(--muted);
-            font-size: 0.83rem;
-            letter-spacing: 0.5px;
-        }
-
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 25px;
-            align-items: start;
+            align-items: stretch;
         }
 
         /* Individual project cards */
 
         .project-card {
             min-width: 0;
+            display: flex;
+            flex-direction: column;
             background-color: var(--white);
             border: 1px solid var(--border);
             border-radius: 7px;
@@ -286,6 +285,9 @@
         /* Project card text */
 
         .project-summary {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
             padding: 22px 23px 24px;
         }
 
@@ -345,6 +347,7 @@
             justify-content: space-between;
             gap: 12px;
             width: 100%;
+            margin-top: auto;
             padding: 14px 0 0;
             border: 0;
             border-top: 1px solid #EEE7E4;
@@ -561,11 +564,11 @@
         }
 
         footer {
-            border-top: 1px solid var(--border);
             padding: 25px 8%;
+            text-align: center;
             color: var(--muted);
             font-size: 0.82rem;
-            text-align: center;
+            border-top: 1px solid rgba(32, 35, 51, 0.08);
         }
 
         /* Responsive layout */
@@ -595,14 +598,15 @@
 
         @media (max-width: 600px) {
             header {
+                align-items: flex-start;
                 flex-direction: column;
+                gap: 15px;
                 padding: 22px 7%;
-                gap: 18px;
             }
 
             nav {
                 justify-content: flex-start;
-                gap: 14px 19px;
+                gap: 12px 20px;
             }
 
             nav a {
@@ -610,7 +614,7 @@
             }
 
             .page-heading {
-                padding: 60px 7% 38px;
+                padding: 60px 7% 40px;
             }
 
             .projects-section {
@@ -691,10 +695,9 @@
         <nav aria-label="Main navigation">
             <a href="index.html">Home</a>
             <a href="education.html">Education</a>
-            <a href="index.html#projects" class="active">Projects</a>
+            <a href="index.html#projects" class="active" aria-current="page">Projects</a>
             <a href="index.html#research">Research</a>
             <a href="experience.html">Experience</a>
-            <a href="contact.html">Contact</a>
         </nav>
     </header>
 
@@ -725,7 +728,6 @@
 
             <div class="gallery-heading">
                 <h2>Explore My Work</h2>
-                <p class="project-count">08 PROJECTS · ENGINEERING &amp; ROBOTICS</p>
             </div>
 
             <div class="projects-grid">
@@ -1387,7 +1389,7 @@
     </main>
 
     <footer>
-        © 2026 Stephanie Naous · Engineering with purpose.
+        <p>© 2026 Stephanie Naous · Engineering with purpose.</p>
     </footer>
 
     <script>
@@ -1440,3 +1442,4 @@
 
 </body>
 </html>
+```
