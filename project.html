@@ -28,7 +28,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 30px;
+            scroll-padding-top: 24px;
         }
 
         body {
@@ -90,7 +90,7 @@
         .page-heading {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 55px 8% 22px;
+            padding: 55px 8% 24px;
         }
 
         .eyebrow {
@@ -108,6 +108,14 @@
             font-weight: 400;
             line-height: 1.15;
             letter-spacing: -1.5px;
+            margin-bottom: 13px;
+        }
+
+        .page-intro {
+            max-width: 690px;
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.8;
         }
 
         /* Projects gallery */
@@ -122,19 +130,22 @@
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 25px;
-            align-items: start;
+            align-items: stretch;
         }
 
-        /* Project cards */
+        /* Individual project cards */
 
         .project-card {
             min-width: 0;
+            height: 100%;
             display: flex;
             flex-direction: column;
+            align-self: stretch;
             background-color: var(--white);
             border: 1px solid var(--border);
             border-radius: 7px;
             overflow: hidden;
+            scroll-margin-top: 24px;
             transition:
                 border-color 0.25s ease,
                 box-shadow 0.25s ease,
@@ -147,11 +158,14 @@
             transform: translateY(-3px);
         }
 
+        /* Expanded card spans both gallery columns */
+
         .project-card.is-expanded {
             grid-column: 1 / -1;
+            height: auto;
             display: grid;
             grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-            grid-template-rows: auto auto;
+            grid-template-rows: auto 1fr;
             align-items: stretch;
             border-color: var(--mauve);
             box-shadow: 0 14px 36px rgba(32, 35, 51, 0.08);
@@ -250,8 +264,8 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            padding: 22px 23px 24px;
             min-width: 0;
+            padding: 22px 23px 24px;
         }
 
         .project-category {
@@ -304,7 +318,7 @@
             color: #477C77;
         }
 
-        /* Expand / collapse control */
+        /* Expand and close control */
 
         .project-toggle {
             display: flex;
@@ -336,6 +350,7 @@
             justify-content: center;
             width: 25px;
             height: 25px;
+            flex-shrink: 0;
             border: 1px solid #DCCBDD;
             border-radius: 50%;
             font-size: 1rem;
@@ -365,7 +380,7 @@
             outline-offset: 4px;
         }
 
-        /* Horizontal expanded details */
+        /* Horizontal project details */
 
         .project-details {
             display: none;
@@ -428,7 +443,7 @@
             line-height: 1.35;
         }
 
-        /* Details content */
+        /* Detail sections */
 
         .details-grid {
             display: grid;
@@ -466,6 +481,8 @@
         .detail-section.full-width {
             grid-column: 1 / -1;
         }
+
+        /* Technical visuals */
 
         .technical-visuals {
             display: grid;
@@ -572,7 +589,7 @@
             }
         }
 
-        /* Mobile */
+        /* Navigation responsiveness */
 
         @media (max-width: 680px) {
             header {
@@ -586,6 +603,8 @@
                 gap: 12px 20px;
             }
         }
+
+        /* Mobile */
 
         @media (max-width: 600px) {
             header {
@@ -613,27 +632,20 @@
                 padding: 21px;
             }
 
-            /* Expanded cards stack on narrow screens */
-
             .project-card.is-expanded {
                 grid-column: 1;
                 display: flex;
                 flex-direction: column;
             }
 
-            .project-card.is-expanded .project-image {
-                grid-column: auto;
-                grid-row: auto;
-            }
-
-            .project-card.is-expanded .project-summary {
+            .project-card.is-expanded .project-image,
+            .project-card.is-expanded .project-summary,
+            .project-card.is-expanded .project-details {
                 grid-column: auto;
                 grid-row: auto;
             }
 
             .project-card.is-expanded .project-details {
-                grid-column: auto;
-                grid-row: auto;
                 border-left: 0;
                 border-top: 1px solid var(--border);
                 padding: 21px;
@@ -686,16 +698,26 @@
 
     <main>
 
+        <!-- Page introduction -->
+
         <section class="page-heading">
             <p class="eyebrow">Selected Engineering Work</p>
             <h1>Projects</h1>
+            <p class="page-intro">
+                Explore a selection of engineering projects, from mechanical
+                design and intelligent control to automation and computational
+                systems. Each project highlights the ideas, technical approaches,
+                and practical work behind its development.
+            </p>
         </section>
+
+        <!-- Projects gallery -->
 
         <section class="projects-section" id="project-gallery">
 
             <div class="projects-grid">
 
-                <!-- Project 1 -->
+                <!-- Project 1: Intelligent Electric Power Steering -->
 
                 <article class="project-card" id="project-steering">
                     <div class="project-image">
@@ -807,7 +829,7 @@
                     </div>
                 </article>
 
-                <!-- Project 2 -->
+                <!-- Project 2: Blinker -->
 
                 <article class="project-card" id="project-blinker">
                     <div class="project-image">
@@ -870,7 +892,7 @@
                     </div>
                 </article>
 
-                <!-- Project 3 -->
+                <!-- Project 3: Disk Sorting Machine -->
 
                 <article class="project-card" id="project-disk-sorting">
                     <div class="project-image">
@@ -934,7 +956,7 @@
                     </div>
                 </article>
 
-                <!-- Project 4 -->
+                <!-- Project 4: Formula Student -->
 
                 <article class="project-card" id="project-formula-student">
                     <div class="project-image">
@@ -998,7 +1020,7 @@
                     </div>
                 </article>
 
-                <!-- Project 5 -->
+                <!-- Project 5: Industrial Automation -->
 
                 <article class="project-card" id="project-industrial-automation">
                     <div class="project-image">
@@ -1062,7 +1084,7 @@
                     </div>
                 </article>
 
-                <!-- Project 6 -->
+                <!-- Project 6: AI and Machine Learning -->
 
                 <article class="project-card" id="project-ai-ml">
                     <div class="project-image">
@@ -1126,7 +1148,7 @@
                     </div>
                 </article>
 
-                <!-- Project 7 -->
+                <!-- Project 7: Dam Water Level Control -->
 
                 <article class="project-card" id="project-dam-control">
                     <div class="project-image">
@@ -1190,7 +1212,7 @@
                     </div>
                 </article>
 
-                <!-- Project 8 -->
+                <!-- Project 8: V12 Engine Design -->
 
                 <article class="project-card" id="project-v12">
                     <div class="project-image">
@@ -1290,6 +1312,19 @@
             toggle.setAttribute("aria-expanded", "true");
             toggle.querySelector(".toggle-symbol").textContent = "−";
             toggle.querySelector(".toggle-text").textContent = "Close project";
+
+            /*
+             * Wait for the expanded layout to be applied,
+             * then bring the selected project into view.
+             */
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    card.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                });
+            });
         }
 
         projectCards.forEach((card) => {
