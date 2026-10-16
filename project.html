@@ -157,7 +157,6 @@
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 24px;
             align-items: stretch;
-            padding-bottom: 0;
         }
 
         .project-card {
@@ -184,8 +183,9 @@
 
         .project-card.is-selected {
             border-color: var(--dark-mauve);
-            box-shadow: 0 0 0 1px var(--dark-mauve),
-                        0 8px 24px rgba(32, 35, 51, 0.06);
+            box-shadow:
+                0 0 0 1px var(--dark-mauve),
+                0 8px 24px rgba(32, 35, 51, 0.06);
         }
 
         .project-visual {
@@ -344,7 +344,7 @@
             transform: rotate(180deg);
         }
 
-        /* Dedicated project details panel */
+        /* Shared project details panel */
 
         .details-shell {
             display: grid;
@@ -352,6 +352,7 @@
             opacity: 0;
             margin-top: 0;
             visibility: hidden;
+            pointer-events: none;
             transition:
                 grid-template-rows 340ms ease,
                 opacity 240ms ease,
@@ -364,6 +365,7 @@
             opacity: 1;
             margin-top: 28px;
             visibility: visible;
+            pointer-events: auto;
             transition:
                 grid-template-rows 340ms ease,
                 opacity 260ms ease,
@@ -523,17 +525,18 @@
             background: #F3EFF3;
         }
 
-        .details-footer {
-            display: flex;
-            justify-content: flex-end;
-            padding: 0 30px 27px;
+        /* Footer */
+
+        .site-footer {
+            margin-top: 75px;
+            padding: 25px 7%;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-align: center;
         }
 
-        .details-close-bottom {
-            display: none;
-        }
-
-        /* Closing animation */
+        /* Reduced motion accessibility */
 
         @media (prefers-reduced-motion: reduce) {
             *,
@@ -544,17 +547,6 @@
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
             }
-        }
-
-        /* Footer */
-
-        .site-footer {
-            margin-top: 75px;
-            padding: 25px 7%;
-            border-top: 1px solid var(--border);
-            color: var(--muted);
-            font-size: 0.82rem;
-            text-align: center;
         }
 
         /* Responsive layout */
@@ -589,10 +581,6 @@
 
             .details-heading {
                 padding: 22px 24px;
-            }
-
-            .details-footer {
-                padding: 0 24px 24px;
             }
         }
 
@@ -648,10 +636,6 @@
                 min-height: 180px;
             }
 
-            .details-footer {
-                padding: 0 20px 20px;
-            }
-
             .site-footer {
                 margin-top: 50px;
             }
@@ -686,7 +670,7 @@
 
         <section class="projects-grid" id="projectsGrid" aria-label="Engineering projects">
 
-            <!-- Project 1 -->
+            <!-- 01: Intelligent Electric Power Steering System -->
             <article class="project-card"
                 style="--visual-bg: #E9E0E9;"
                 data-project="eps">
@@ -715,10 +699,8 @@
                             <span class="tag">SolidWorks</span>
                         </div>
 
-                        <button class="project-toggle"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="projectDetails">
+                        <button class="project-toggle" type="button"
+                            aria-expanded="false" aria-controls="projectDetails">
                             <span class="toggle-text">Explore project</span>
                             <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
@@ -726,7 +708,7 @@
                 </div>
             </article>
 
-            <!-- Project 2 -->
+            <!-- 02: Blinker -->
             <article class="project-card"
                 style="--visual-bg: #E0ECEA;"
                 data-project="blinker">
@@ -755,10 +737,8 @@
                             <span class="tag">Testing</span>
                         </div>
 
-                        <button class="project-toggle"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="projectDetails">
+                        <button class="project-toggle" type="button"
+                            aria-expanded="false" aria-controls="projectDetails">
                             <span class="toggle-text">Explore project</span>
                             <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
@@ -766,53 +746,13 @@
                 </div>
             </article>
 
-            <!-- Project 3 -->
-            <article class="project-card"
-                style="--visual-bg: #E8E5F0;"
-                data-project="sorting">
-
-                <div class="project-visual">
-                    <span class="visual-number">03</span>
-                    <div class="visual-label">
-                        Disk Sorting Machine
-                        <span>Automation · Mechanical systems</span>
-                    </div>
-                </div>
-
-                <div class="project-summary">
-                    <div class="project-category">Automation</div>
-                    <h2>Disk Sorting Machine</h2>
-                    <p>
-                        Development of an automated sorting system combining
-                        mechanical components, sensing, and control to organize
-                        objects according to defined criteria.
-                    </p>
-
-                    <div class="project-bottom">
-                        <div class="project-tags">
-                            <span class="tag">Automation</span>
-                            <span class="tag">Sensors</span>
-                            <span class="tag">Control</span>
-                        </div>
-
-                        <button class="project-toggle"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="projectDetails">
-                            <span class="toggle-text">Explore project</span>
-                            <span class="toggle-symbol" aria-hidden="true">+</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 4 -->
+            <!-- 03: Formula Student Car Design and Analysis -->
             <article class="project-card"
                 style="--visual-bg: #F0E5DE;"
                 data-project="formula">
 
                 <div class="project-visual">
-                    <span class="visual-number">04</span>
+                    <span class="visual-number">03</span>
                     <div class="visual-label">
                         Formula Student
                         <span>Vehicle design · Engineering analysis</span>
@@ -835,10 +775,8 @@
                             <span class="tag">Vehicle design</span>
                         </div>
 
-                        <button class="project-toggle"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="projectDetails">
+                        <button class="project-toggle" type="button"
+                            aria-expanded="false" aria-controls="projectDetails">
                             <span class="toggle-text">Explore project</span>
                             <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
@@ -846,53 +784,13 @@
                 </div>
             </article>
 
-            <!-- Project 5 -->
-            <article class="project-card"
-                style="--visual-bg: #E4EAE0;"
-                data-project="industrial">
-
-                <div class="project-visual">
-                    <span class="visual-number">05</span>
-                    <div class="visual-label">
-                        Industrial Automation
-                        <span>PLC · Sensors · Control systems</span>
-                    </div>
-                </div>
-
-                <div class="project-summary">
-                    <div class="project-category">Industrial systems</div>
-                    <h2>Industrial Automation</h2>
-                    <p>
-                        Exploration of automated industrial processes through
-                        control logic, sensor inputs, and coordinated system
-                        operation.
-                    </p>
-
-                    <div class="project-bottom">
-                        <div class="project-tags">
-                            <span class="tag">PLC</span>
-                            <span class="tag">Sensors</span>
-                            <span class="tag">Automation</span>
-                        </div>
-
-                        <button class="project-toggle"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="projectDetails">
-                            <span class="toggle-text">Explore project</span>
-                            <span class="toggle-symbol" aria-hidden="true">+</span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 6 -->
+            <!-- 04: AI and Machine Learning -->
             <article class="project-card"
                 style="--visual-bg: #E4E8F1;"
                 data-project="ai">
 
                 <div class="project-visual">
-                    <span class="visual-number">06</span>
+                    <span class="visual-number">04</span>
                     <div class="visual-label">
                         AI and Machine Learning
                         <span>Programming · Intelligent systems</span>
@@ -915,10 +813,8 @@
                             <span class="tag">Data</span>
                         </div>
 
-                        <button class="project-toggle"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="projectDetails">
+                        <button class="project-toggle" type="button"
+                            aria-expanded="false" aria-controls="projectDetails">
                             <span class="toggle-text">Explore project</span>
                             <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
@@ -926,13 +822,13 @@
                 </div>
             </article>
 
-            <!-- Project 7 -->
+            <!-- 05: Dam Water Level Control -->
             <article class="project-card"
                 style="--visual-bg: #E4EEED;"
                 data-project="dam">
 
                 <div class="project-visual">
-                    <span class="visual-number">07</span>
+                    <span class="visual-number">05</span>
                     <div class="visual-label">
                         Dam Water Level Control
                         <span>Instrumentation · Feedback control</span>
@@ -955,10 +851,8 @@
                             <span class="tag">Simulation</span>
                         </div>
 
-                        <button class="project-toggle"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="projectDetails">
+                        <button class="project-toggle" type="button"
+                            aria-expanded="false" aria-controls="projectDetails">
                             <span class="toggle-text">Explore project</span>
                             <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
@@ -966,13 +860,13 @@
                 </div>
             </article>
 
-            <!-- Project 8 -->
+            <!-- 06: V12 Engine Design -->
             <article class="project-card"
                 style="--visual-bg: #EEE4E8;"
                 data-project="engine">
 
                 <div class="project-visual">
-                    <span class="visual-number">08</span>
+                    <span class="visual-number">06</span>
                     <div class="visual-label">
                         V12 Engine
                         <span>3D modelling · Mechanical design</span>
@@ -995,10 +889,84 @@
                             <span class="tag">Mechanics</span>
                         </div>
 
-                        <button class="project-toggle"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="projectDetails">
+                        <button class="project-toggle" type="button"
+                            aria-expanded="false" aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 07: Industrial Automation -->
+            <article class="project-card"
+                style="--visual-bg: #E4EAE0;"
+                data-project="industrial">
+
+                <div class="project-visual">
+                    <span class="visual-number">07</span>
+                    <div class="visual-label">
+                        Industrial Automation
+                        <span>PLC · Sensors · Control systems</span>
+                    </div>
+                </div>
+
+                <div class="project-summary">
+                    <div class="project-category">Industrial systems</div>
+                    <h2>Industrial Automation</h2>
+                    <p>
+                        Exploration of automated industrial processes through
+                        control logic, sensor inputs, and coordinated system
+                        operation.
+                    </p>
+
+                    <div class="project-bottom">
+                        <div class="project-tags">
+                            <span class="tag">PLC</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Automation</span>
+                        </div>
+
+                        <button class="project-toggle" type="button"
+                            aria-expanded="false" aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 08: Disk Sorting Machine -->
+            <article class="project-card"
+                style="--visual-bg: #E8E5F0;"
+                data-project="sorting">
+
+                <div class="project-visual">
+                    <span class="visual-number">08</span>
+                    <div class="visual-label">
+                        Disk Sorting Machine
+                        <span>Automation · Mechanical systems</span>
+                    </div>
+                </div>
+
+                <div class="project-summary">
+                    <div class="project-category">Automation</div>
+                    <h2>Disk Sorting Machine</h2>
+                    <p>
+                        Development of an automated sorting system combining
+                        mechanical components, sensing, and control to organize
+                        objects according to defined criteria.
+                    </p>
+
+                    <div class="project-bottom">
+                        <div class="project-tags">
+                            <span class="tag">Automation</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Control</span>
+                        </div>
+
+                        <button class="project-toggle" type="button"
+                            aria-expanded="false" aria-controls="projectDetails">
                             <span class="toggle-text">Explore project</span>
                             <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
@@ -1008,7 +976,8 @@
 
         </section>
 
-        <!-- One shared panel: project details appear here -->
+        <!-- Shared panel: the selected project's details appear here -->
+
         <section class="details-shell"
             id="projectDetails"
             aria-label="Selected project details"
@@ -1104,7 +1073,7 @@
                     "Integration of steering, motor, torque measurement, and control components."
                 ],
                 outcome:
-                    "The project combined control-system development, simulation, and physical prototyping to explore adaptive steering assistance. Quantitative performance results can be added here once the final simulation and experimental measurements are available.",
+                    "The project combined control-system development, simulation, and physical prototyping to explore adaptive steering assistance. Quantitative performance results can be added once the final simulation and experimental measurements are available.",
                 tools: [
                     "SolidWorks",
                     "MATLAB",
@@ -1140,32 +1109,6 @@
                 visualBg: "#E0ECEA"
             },
 
-            sorting: {
-                title: "Disk Sorting Machine",
-                category: "Automation · Mechanical systems",
-                image: "Disk Sorting Machine",
-                imageNote: "Add photographs of the machine, sorting mechanism, and control setup.",
-                overview:
-                    "The Disk Sorting Machine project explored the development of an automated system to sort disks according to defined criteria.",
-                approach:
-                    "The system combines mechanical handling with sensing and control. The design process considers how objects are identified, transferred, and directed through the sorting process.",
-                highlights: [
-                    "Mechanical arrangement of the sorting system.",
-                    "Use of sensing to distinguish or detect objects.",
-                    "Coordination of the sorting sequence.",
-                    "Consideration of repeatability and reliable operation."
-                ],
-                outcome:
-                    "Add the specific sorting criteria, implemented mechanism, and final testing results from your project.",
-                tools: [
-                    "Mechanical design",
-                    "Sensors",
-                    "Automation",
-                    "Control systems"
-                ],
-                visualBg: "#E8E5F0"
-            },
-
             formula: {
                 title: "Formula Student Car Design and Analysis",
                 category: "Mechanical design · Vehicle engineering",
@@ -1189,32 +1132,6 @@
                     "Engineering analysis"
                 ],
                 visualBg: "#F0E5DE"
-            },
-
-            industrial: {
-                title: "Industrial Automation",
-                category: "Industrial systems · Control",
-                image: "Industrial Automation",
-                imageNote: "Add a photograph of the automation setup, PLC logic, or system diagram.",
-                overview:
-                    "This project explored the use of industrial automation to coordinate a process through control logic, sensor inputs, and system outputs.",
-                approach:
-                    "The system was approached as a combination of process inputs, control decisions, and output actions. The objective was to understand how these elements work together to automate a sequence of operations.",
-                highlights: [
-                    "Understanding the sequence of an automated process.",
-                    "Relationship between sensors and control logic.",
-                    "Coordination of system inputs and outputs.",
-                    "Consideration of safe and reliable operation."
-                ],
-                outcome:
-                    "Add the specific process you automated, the PLC or controller used, and the final demonstrated functionality.",
-                tools: [
-                    "PLC",
-                    "Sensors",
-                    "Control logic",
-                    "Automation"
-                ],
-                visualBg: "#E4EAE0"
             },
 
             ai: {
@@ -1290,6 +1207,58 @@
                     "Mechanical design"
                 ],
                 visualBg: "#EEE4E8"
+            },
+
+            industrial: {
+                title: "Industrial Automation",
+                category: "Industrial systems · Control",
+                image: "Industrial Automation",
+                imageNote: "Add a photograph of the automation setup, PLC logic, or system diagram.",
+                overview:
+                    "This project explored the use of industrial automation to coordinate a process through control logic, sensor inputs, and system outputs.",
+                approach:
+                    "The system was approached as a combination of process inputs, control decisions, and output actions. The objective was to understand how these elements work together to automate a sequence of operations.",
+                highlights: [
+                    "Understanding the sequence of an automated process.",
+                    "Relationship between sensors and control logic.",
+                    "Coordination of system inputs and outputs.",
+                    "Consideration of safe and reliable operation."
+                ],
+                outcome:
+                    "Add the specific process you automated, the PLC or controller used, and the final demonstrated functionality.",
+                tools: [
+                    "PLC",
+                    "Sensors",
+                    "Control logic",
+                    "Automation"
+                ],
+                visualBg: "#E4EAE0"
+            },
+
+            sorting: {
+                title: "Disk Sorting Machine",
+                category: "Automation · Mechanical systems",
+                image: "Disk Sorting Machine",
+                imageNote: "Add photographs of the machine, sorting mechanism, and control setup.",
+                overview:
+                    "The Disk Sorting Machine project explored the development of an automated system to sort disks according to defined criteria.",
+                approach:
+                    "The system combines mechanical handling with sensing and control. The design process considers how objects are identified, transferred, and directed through the sorting process.",
+                highlights: [
+                    "Mechanical arrangement of the sorting system.",
+                    "Use of sensing to distinguish or detect objects.",
+                    "Coordination of the sorting sequence.",
+                    "Consideration of repeatability and reliable operation."
+                ],
+                outcome:
+                    "Add the specific sorting criteria, implemented mechanism, and final testing results from your project.",
+                tools: [
+                    "Mechanical design",
+                    "Sensors",
+                    "Automation",
+                    "Control systems"
+                ],
+                visualBg: "#E8E5F0"
             }
         };
 
@@ -1301,7 +1270,6 @@
         const detailsTitle = document.getElementById("detailsTitle");
         const detailsCategory = document.getElementById("detailsCategory");
         const detailsImage = document.getElementById("detailsImage");
-        const detailsImageLabel = document.getElementById("detailsImageLabel");
         const detailsImageNote = document.getElementById("detailsImageNote");
         const detailsOverview = document.getElementById("detailsOverview");
         const detailsApproach = document.getElementById("detailsApproach");
@@ -1311,23 +1279,23 @@
         const closeDetailsButton = document.getElementById("closeDetails");
 
         let selectedCard = null;
+        let closeTimer = null;
 
         function updateDetails(project) {
             detailsTitle.textContent = project.title;
             detailsCategory.textContent = project.category;
             detailsImage.style.setProperty("--visual-bg", project.visualBg);
-            detailsImageLabel.innerHTML = "";
 
-            const imageTitle = document.createElement("div");
-            imageTitle.className = "details-image-label";
-            imageTitle.textContent = project.image;
+            // Update the existing image label without replacing its element.
+            const imageLabel = document.getElementById("detailsImageLabel");
+            imageLabel.replaceChildren();
 
+            const imageTitle = document.createTextNode(project.image);
             const imageSubtitle = document.createElement("span");
             imageSubtitle.textContent = "Project visual";
 
-            imageTitle.appendChild(imageSubtitle);
-            detailsImageLabel.replaceWith(imageTitle);
-            imageTitle.id = "detailsImageLabel";
+            imageLabel.appendChild(imageTitle);
+            imageLabel.appendChild(imageSubtitle);
 
             detailsImageNote.textContent = project.imageNote;
             detailsOverview.textContent = project.overview;
@@ -1357,8 +1325,10 @@
 
             const toggle = card.querySelector(".project-toggle");
             toggle.setAttribute("aria-expanded", String(isSelected));
+
             toggle.querySelector(".toggle-text").textContent =
                 isSelected ? "Close project" : "Explore project";
+
             toggle.querySelector(".toggle-symbol").textContent =
                 isSelected ? "−" : "+";
         }
@@ -1367,17 +1337,26 @@
             const project = projectData[card.dataset.project];
 
             if (!project) {
+                console.error("No project data found for:", card.dataset.project);
                 return;
             }
 
-            // Clicking the already selected project closes the panel.
+            // Clicking the selected project closes its details.
             if (selectedCard === card && detailsShell.classList.contains("is-open")) {
                 closeProject();
                 return;
             }
 
-            // Keep the grid still. Only update the shared panel below it.
-            cards.forEach((item) => setCardState(item, item === card));
+            // Clear any pending closing timer before opening another project.
+            if (closeTimer) {
+                window.clearTimeout(closeTimer);
+                closeTimer = null;
+            }
+
+            // Only one project can be selected at a time.
+            cards.forEach((item) => {
+                setCardState(item, item === card);
+            });
 
             selectedCard = card;
             updateDetails(project);
@@ -1393,18 +1372,23 @@
             }
 
             const previouslySelected = selectedCard;
+
             setCardState(previouslySelected, false);
             selectedCard = null;
 
             detailsShell.classList.remove("is-open");
             detailsShell.setAttribute("aria-hidden", "true");
 
-            // Wait until the closing animation finishes before hiding
-            // the panel from keyboard navigation.
-            window.setTimeout(() => {
+            if (closeTimer) {
+                window.clearTimeout(closeTimer);
+            }
+
+            // Hide the panel from keyboard navigation after the animation.
+            closeTimer = window.setTimeout(() => {
                 if (!detailsShell.classList.contains("is-open")) {
                     detailsShell.inert = true;
                 }
+                closeTimer = null;
             }, 360);
         }
 
@@ -1416,13 +1400,21 @@
             });
         });
 
-        closeDetailsButton.addEventListener("click", closeProject);
+        closeDetailsButton.addEventListener("click", () => {
+            const cardToFocus = selectedCard;
+            closeProject();
 
-        // Escape closes the panel without moving the page.
+            if (cardToFocus) {
+                cardToFocus.querySelector(".project-toggle").focus();
+            }
+        });
+
+        // Escape closes the panel and returns focus to the selected project.
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape" && selectedCard) {
+                const cardToFocus = selectedCard;
                 closeProject();
-                selectedCard.querySelector(".project-toggle").focus();
+                cardToFocus.querySelector(".project-toggle").focus();
             }
         });
     </script>
