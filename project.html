@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Projects | Stephanie Naous</title>
+    <meta
+        name="description"
+        content="Explore the engineering and robotics projects of Stephanie Naous, a mechanical engineer specializing in collaborative robotics."
+    >
 
     <style>
         :root {
@@ -14,48 +19,56 @@
             --dark-mauve: #8C667F;
             --teal: #91B9B5;
             --white: #FFFFFF;
-            --muted: #777783;
-            --border: #E7E0DC;
-            --light-mauve: #EFE4EF;
-            --light-teal: #E1EFED;
+            --muted: #696977;
+            --border: rgba(32, 35, 51, 0.12);
+            --shadow: 0 12px 32px rgba(32, 35, 51, 0.07);
+            --transition: 260ms ease;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 24px;
         }
 
         body {
             font-family: "Segoe UI", Arial, sans-serif;
-            background-color: var(--ivory);
+            background: var(--ivory);
             color: var(--navy);
-            line-height: 1.6;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
         button {
             font: inherit;
         }
 
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid var(--teal);
+            outline-offset: 4px;
+        }
+
         /* Header */
 
-        header {
-            padding: 25px 8%;
+        .site-header {
+            width: 100%;
+            padding: 22px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 30px;
-            border-bottom: 1px solid rgba(32, 35, 51, 0.08);
+            border-bottom: 1px solid var(--border);
+            background: rgba(247, 244, 241, 0.96);
         }
 
         .logo {
@@ -67,616 +80,580 @@
             flex-shrink: 0;
         }
 
-        nav {
+        .main-nav {
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             justify-content: flex-end;
-            gap: 27px;
+            flex-wrap: wrap;
+            gap: 28px;
         }
 
-        nav a {
-            font-size: 0.88rem;
+        .main-nav a {
+            position: relative;
             color: var(--navy);
-            transition: color 0.25s ease;
+            font-size: 0.91rem;
+            transition: color var(--transition);
         }
 
-        nav a:hover,
-        nav a.active {
+        .main-nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--dark-mauve);
+            transition: width var(--transition);
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
             color: var(--dark-mauve);
         }
 
-        /* Page heading */
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
 
-        .page-heading {
-            max-width: 1200px;
+        /* Page introduction */
+
+        .page-container {
+            width: min(1120px, 86%);
             margin: 0 auto;
-            padding: 55px 8% 24px;
-        }
-
-        .eyebrow {
-            color: var(--dark-mauve);
-            font-size: 0.79rem;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        h1 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(3rem, 6vw, 4.6rem);
-            font-weight: 400;
-            line-height: 1.15;
-            letter-spacing: -1.5px;
-            margin-bottom: 13px;
         }
 
         .page-intro {
-            max-width: 690px;
+            padding: 54px 0 27px;
+        }
+
+        .eyebrow {
+            margin-bottom: 7px;
+            color: var(--dark-mauve);
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .page-intro h1 {
+            margin-bottom: 8px;
+            font-size: clamp(2.3rem, 5vw, 3.35rem);
+            line-height: 1.15;
+            font-weight: 650;
+            letter-spacing: -1.6px;
+        }
+
+        .page-intro p {
+            max-width: 720px;
             color: var(--muted);
-            font-size: 0.98rem;
-            line-height: 1.8;
+            font-size: 1rem;
         }
 
-        /* Projects gallery */
-
-        .projects-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 8px 8% 80px;
-        }
+        /* Project grid */
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 25px;
+            gap: 24px;
             align-items: stretch;
+            padding-bottom: 0;
         }
-
-        /* Individual project cards */
 
         .project-card {
             min-width: 0;
             height: 100%;
             display: flex;
             flex-direction: column;
-            align-self: stretch;
-            background-color: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 7px;
             overflow: hidden;
-            scroll-margin-top: 24px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 5px 18px rgba(32, 35, 51, 0.035);
             transition:
-                border-color 0.25s ease,
-                box-shadow 0.25s ease,
-                transform 0.25s ease;
+                border-color var(--transition),
+                box-shadow var(--transition),
+                transform var(--transition);
         }
 
         .project-card:hover {
-            border-color: #D4BDD1;
-            box-shadow: 0 12px 30px rgba(32, 35, 51, 0.07);
+            border-color: rgba(140, 102, 127, 0.42);
+            box-shadow: var(--shadow);
             transform: translateY(-3px);
         }
 
-        /* Expanded card spans both gallery columns */
-
-        .project-card.is-expanded {
-            grid-column: 1 / -1;
-            height: auto;
-            display: grid;
-            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-            grid-template-rows: auto 1fr;
-            align-items: stretch;
-            border-color: var(--mauve);
-            box-shadow: 0 14px 36px rgba(32, 35, 51, 0.08);
-            transform: none;
+        .project-card.is-selected {
+            border-color: var(--dark-mauve);
+            box-shadow: 0 0 0 1px var(--dark-mauve),
+                        0 8px 24px rgba(32, 35, 51, 0.06);
         }
 
-        /* Project image */
-
-        .project-image {
+        .project-visual {
             position: relative;
+            min-height: 190px;
+            aspect-ratio: 16 / 8.5;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            aspect-ratio: 5 / 3;
             overflow: hidden;
-            background: linear-gradient(
-                135deg,
-                #EEE5EE 0%,
-                #F7F4F1 52%,
-                #E4EFED 100%
-            );
+            background: var(--visual-bg, #E9E3E8);
         }
 
-        .project-image::before,
-        .project-image::after {
+        .project-visual::before,
+        .project-visual::after {
             content: "";
             position: absolute;
+            border: 1px solid rgba(32, 35, 51, 0.09);
+            border-radius: 50%;
             pointer-events: none;
         }
 
-        .project-image::before {
-            inset: 15px;
-            border: 1px solid rgba(140, 102, 127, 0.18);
-            border-radius: 3px;
+        .project-visual::before {
+            width: 180px;
+            height: 180px;
         }
 
-        .project-image::after {
-            width: 70px;
-            height: 70px;
-            right: 25px;
-            bottom: 25px;
-            border-right: 1px solid rgba(140, 102, 127, 0.35);
-            border-bottom: 1px solid rgba(140, 102, 127, 0.35);
+        .project-visual::after {
+            width: 240px;
+            height: 240px;
         }
 
-        .project-image img {
-            position: relative;
+        .visual-number {
+            position: absolute;
+            top: 15px;
+            left: 17px;
             z-index: 1;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.035);
-        }
-
-        .image-placeholder {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .placeholder-symbol {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 62px;
-            height: 62px;
-            border: 1px solid rgba(140, 102, 127, 0.4);
-            border-radius: 50%;
-            color: var(--dark-mauve);
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.45rem;
-        }
-
-        .placeholder-label {
-            color: var(--dark-mauve);
-            font-size: 0.7rem;
+            color: rgba(32, 35, 51, 0.65);
+            font-size: 0.76rem;
             font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
-        /* Project summary */
+        .visual-label {
+            position: relative;
+            z-index: 1;
+            max-width: 75%;
+            color: var(--navy);
+            font-size: 1.02rem;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .visual-label span {
+            display: block;
+            margin-top: 8px;
+            color: rgba(32, 35, 51, 0.66);
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
 
         .project-summary {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            flex: 1;
-            min-width: 0;
-            padding: 22px 23px 24px;
+            align-items: flex-start;
+            padding: 23px 24px 21px;
         }
 
         .project-category {
+            margin-bottom: 8px;
             color: var(--dark-mauve);
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 1.8px;
+            letter-spacing: 1.4px;
             text-transform: uppercase;
+        }
+
+        .project-summary h2 {
             margin-bottom: 9px;
+            font-size: 1.25rem;
+            font-weight: 650;
+            line-height: 1.35;
         }
 
-        .project-card:nth-child(even) .project-category {
-            color: #477C77;
-        }
-
-        .project-title {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(1.35rem, 2.3vw, 1.75rem);
-            font-weight: 400;
-            line-height: 1.3;
-            margin-bottom: 10px;
-        }
-
-        .project-description {
-            color: #565765;
+        .project-summary > p {
+            margin-bottom: 18px;
+            color: var(--muted);
             font-size: 0.91rem;
-            line-height: 1.8;
-            margin-bottom: 17px;
+            line-height: 1.7;
+        }
+
+        .project-bottom {
+            width: 100%;
+            margin-top: auto;
+            padding-top: 3px;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 7px;
-            margin-bottom: 21px;
+            margin-bottom: 20px;
         }
 
-        .project-tag {
+        .tag {
             display: inline-block;
-            padding: 5px 9px;
-            border-radius: 3px;
-            background-color: var(--light-mauve);
-            color: var(--dark-mauve);
-            font-size: 0.74rem;
-            font-weight: 600;
+            padding: 5px 10px;
+            color: var(--navy);
+            background: #F2EEF2;
+            border-radius: 30px;
+            font-size: 0.73rem;
+            line-height: 1.5;
         }
-
-        .project-card:nth-child(even) .project-tag {
-            background-color: var(--light-teal);
-            color: #477C77;
-        }
-
-        /* Expand and close control */
 
         .project-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
             width: 100%;
-            margin-top: auto;
-            padding: 14px 0 0;
-            border: 0;
-            border-top: 1px solid #EEE7E4;
-            background: transparent;
+            min-height: 43px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
             color: var(--dark-mauve);
-            text-align: left;
-            font-size: 0.86rem;
-            font-weight: 650;
+            background: transparent;
+            border: 1px solid rgba(140, 102, 127, 0.4);
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 0.87rem;
+            font-weight: 650;
+            text-align: left;
+            transition:
+                color var(--transition),
+                background var(--transition),
+                border-color var(--transition);
         }
 
-        .toggle-label {
-            display: flex;
-            align-items: center;
-            gap: 9px;
+        .project-toggle:hover,
+        .project-card.is-selected .project-toggle {
+            color: var(--white);
+            background: var(--dark-mauve);
+            border-color: var(--dark-mauve);
         }
 
         .toggle-symbol {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 25px;
-            height: 25px;
             flex-shrink: 0;
-            border: 1px solid #DCCBDD;
-            border-radius: 50%;
-            font-size: 1rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 1;
+            transition: transform var(--transition);
+        }
+
+        .project-card.is-selected .toggle-symbol {
+            transform: rotate(180deg);
+        }
+
+        /* Dedicated project details panel */
+
+        .details-shell {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            margin-top: 0;
+            visibility: hidden;
             transition:
-                transform 0.25s ease,
-                background-color 0.25s ease;
+                grid-template-rows 340ms ease,
+                opacity 240ms ease,
+                margin-top 340ms ease,
+                visibility 0s linear 340ms;
         }
 
-        .toggle-hint {
-            color: var(--muted);
-            font-size: 0.75rem;
-            font-weight: 500;
+        .details-shell.is-open {
+            grid-template-rows: 1fr;
+            opacity: 1;
+            margin-top: 28px;
+            visibility: visible;
+            transition:
+                grid-template-rows 340ms ease,
+                opacity 260ms ease,
+                margin-top 340ms ease,
+                visibility 0s;
         }
 
-        .project-toggle:hover .toggle-symbol {
-            background-color: var(--light-mauve);
+        .details-clip {
+            min-height: 0;
+            overflow: hidden;
         }
 
-        .project-card.is-expanded .toggle-symbol {
-            transform: rotate(45deg);
+        .details-panel {
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transform: translateY(10px);
+            transition: transform 340ms ease;
         }
 
-        .project-toggle:focus-visible,
-        nav a:focus-visible,
-        .back-link:focus-visible {
-            outline: 2px solid var(--dark-mauve);
-            outline-offset: 4px;
+        .details-shell.is-open .details-panel {
+            transform: translateY(0);
         }
 
-        /* Horizontal project details */
-
-        .project-details {
-            display: none;
-            min-width: 0;
-            padding: 24px;
-            border-left: 1px solid var(--border);
-            background-color: #FCFAF8;
-            animation: revealDetails 0.25s ease both;
-        }
-
-        .project-card.is-expanded .project-details {
-            display: block;
-            grid-column: 2;
-            grid-row: 1 / 3;
-        }
-
-        .project-card.is-expanded .project-image {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .project-card.is-expanded .project-summary {
-            grid-column: 1;
-            grid-row: 2;
-        }
-
-        @keyframes revealDetails {
-            from {
-                opacity: 0;
-                transform: translateX(6px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .details-header {
+        .details-heading {
             display: flex;
-            justify-content: space-between;
             align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 22px;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 25px 30px 22px;
+            background: linear-gradient(
+                110deg,
+                rgba(201, 168, 200, 0.22),
+                rgba(145, 185, 181, 0.15)
+            );
+            border-bottom: 1px solid var(--border);
         }
 
-        .details-eyebrow {
-            color: var(--dark-mauve);
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 7px;
+        .details-heading .project-category {
+            margin-bottom: 6px;
         }
 
-        .details-title {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(1.25rem, 2vw, 1.65rem);
-            font-weight: 400;
-            line-height: 1.35;
+        .details-heading h2 {
+            font-size: clamp(1.4rem, 3vw, 1.9rem);
+            font-weight: 650;
+            line-height: 1.3;
         }
 
-        /* Detail sections */
-
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 22px 25px;
-        }
-
-        .detail-section {
-            min-width: 0;
-        }
-
-        .detail-section h4 {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-size: 0.91rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .detail-number {
-            color: var(--dark-mauve);
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-
-        .detail-section p {
-            color: #565765;
-            font-size: 0.86rem;
-            line-height: 1.75;
-            overflow-wrap: anywhere;
-        }
-
-        .detail-section.full-width {
-            grid-column: 1 / -1;
-        }
-
-        /* Technical visuals */
-
-        .technical-visuals {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-top: 13px;
-        }
-
-        .technical-visual {
+        .collapse-button {
+            width: 37px;
+            height: 37px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 120px;
-            padding: 15px;
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            background-color: var(--white);
-            color: var(--muted);
-            text-align: center;
-            font-size: 0.78rem;
-            line-height: 1.65;
-        }
-
-        .technical-visual span {
-            display: block;
-            margin-bottom: 5px;
             color: var(--dark-mauve);
-            font-weight: 700;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(140, 102, 127, 0.25);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.35rem;
+            transition:
+                color var(--transition),
+                background var(--transition),
+                transform var(--transition);
         }
 
-        .implementation-tags {
+        .collapse-button:hover {
+            color: var(--white);
+            background: var(--dark-mauve);
+            transform: rotate(90deg);
+        }
+
+        .details-content {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 34px;
+            padding: 30px;
+        }
+
+        .details-left,
+        .details-right {
+            min-width: 0;
+        }
+
+        .details-image {
+            min-height: 240px;
+            aspect-ratio: 4 / 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 25px;
+            background: var(--visual-bg, #E9E3E8);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .details-image-label {
+            color: var(--navy);
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .details-image-label span {
+            display: block;
+            margin-top: 8px;
+            color: rgba(32, 35, 51, 0.7);
+            font-size: 0.82rem;
+            font-weight: 400;
+        }
+
+        .details-image-note {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 0.77rem;
+        }
+
+        .details-section + .details-section {
+            margin-top: 23px;
+        }
+
+        .details-section h3 {
+            margin-bottom: 8px;
+            color: var(--dark-mauve);
+            font-size: 0.78rem;
+            font-weight: 750;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .details-section p,
+        .details-section li {
+            color: var(--muted);
+            font-size: 0.91rem;
+            line-height: 1.8;
+        }
+
+        .details-section ul {
+            padding-left: 20px;
+        }
+
+        .details-section li + li {
+            margin-top: 5px;
+        }
+
+        .details-tools {
             display: flex;
             flex-wrap: wrap;
-            gap: 7px;
-            margin-top: 11px;
+            gap: 8px;
         }
 
-        .implementation-tag {
-            padding: 5px 8px;
-            border: 1px solid #E4D8E2;
-            border-radius: 3px;
-            color: var(--dark-mauve);
-            font-size: 0.74rem;
+        .details-tools .tag {
+            background: #F3EFF3;
         }
 
-        .results-note {
-            padding: 14px 16px;
-            border-left: 3px solid var(--teal);
-            background-color: #F0F5F3;
-            color: #454E50;
-            font-size: 0.85rem;
-            line-height: 1.75;
+        .details-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 30px 27px;
         }
 
-        /* Back link and footer */
-
-        .back-link {
-            display: inline-block;
-            margin-top: 35px;
-            padding-bottom: 4px;
-            border-bottom: 1px solid var(--dark-mauve);
-            color: var(--dark-mauve);
-            font-size: 0.9rem;
-            font-weight: 600;
+        .details-close-bottom {
+            display: none;
         }
 
-        footer {
-            padding: 25px 8%;
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.82rem;
-            border-top: 1px solid rgba(32, 35, 51, 0.08);
-        }
-
-        /* Tablet */
-
-        @media (max-width: 850px) {
-            .projects-grid {
-                gap: 18px;
-            }
-
-            .project-summary {
-                padding: 19px;
-            }
-
-            .project-details {
-                padding: 19px;
-            }
-
-            .details-grid {
-                gap: 20px;
-            }
-
-            .project-card.is-expanded {
-                grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-            }
-
-            .details-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .detail-section.full-width {
-                grid-column: auto;
-            }
-        }
-
-        /* Navigation responsiveness */
-
-        @media (max-width: 680px) {
-            header {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            nav {
-                justify-content: flex-start;
-                gap: 12px 20px;
-            }
-        }
-
-        /* Mobile */
-
-        @media (max-width: 600px) {
-            header {
-                padding: 22px 7%;
-            }
-
-            .page-heading {
-                padding: 45px 7% 22px;
-            }
-
-            .projects-section {
-                padding: 5px 7% 65px;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 22px;
-            }
-
-            .project-image {
-                aspect-ratio: 5 / 3;
-            }
-
-            .project-summary {
-                padding: 21px;
-            }
-
-            .project-card.is-expanded {
-                grid-column: 1;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .project-card.is-expanded .project-image,
-            .project-card.is-expanded .project-summary,
-            .project-card.is-expanded .project-details {
-                grid-column: auto;
-                grid-row: auto;
-            }
-
-            .project-card.is-expanded .project-details {
-                border-left: 0;
-                border-top: 1px solid var(--border);
-                padding: 21px;
-            }
-
-            .details-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .detail-section.full-width {
-                grid-column: auto;
-            }
-
-            .technical-visuals {
-                grid-template-columns: 1fr;
-            }
-
-            footer {
-                padding: 25px 7%;
-            }
-        }
+        /* Closing animation */
 
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
             *::after {
                 scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Footer */
+
+        .site-footer {
+            margin-top: 75px;
+            padding: 25px 7%;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        /* Responsive layout */
+
+        @media (max-width: 800px) {
+            .site-header {
+                padding: 20px 6%;
+                align-items: flex-start;
+            }
+
+            .main-nav {
+                gap: 13px 19px;
+            }
+
+            .main-nav a {
+                font-size: 0.85rem;
+            }
+
+            .page-container {
+                width: 88%;
+            }
+
+            .details-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 24px;
+            }
+
+            .details-image {
+                min-height: 210px;
+            }
+
+            .details-heading {
+                padding: 22px 24px;
+            }
+
+            .details-footer {
+                padding: 0 24px 24px;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .site-header {
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            .main-nav {
+                width: 100%;
+                justify-content: flex-start;
+                gap: 12px 17px;
+            }
+
+            .page-intro {
+                padding-top: 38px;
+                padding-bottom: 22px;
+            }
+
+            .page-intro h1 {
+                letter-spacing: -1px;
+            }
+
+            .projects-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 19px;
+            }
+
+            .project-visual {
+                min-height: 175px;
+            }
+
+            .project-summary {
+                padding: 20px;
+            }
+
+            .details-shell.is-open {
+                margin-top: 20px;
+            }
+
+            .details-heading {
+                padding: 20px;
+                gap: 14px;
+            }
+
+            .details-content {
+                padding: 20px;
+                gap: 21px;
+            }
+
+            .details-image {
+                min-height: 180px;
+            }
+
+            .details-footer {
+                padding: 0 20px 20px;
+            }
+
+            .site-footer {
+                margin-top: 50px;
             }
         }
     </style>
@@ -684,10 +661,10 @@
 
 <body>
 
-    <header>
-        <a href="index.html" class="logo">SN.</a>
+    <header class="site-header">
+        <a class="logo" href="index.html" aria-label="Stephanie Naous home">SN.</a>
 
-        <nav aria-label="Main navigation">
+        <nav class="main-nav" aria-label="Main navigation">
             <a href="index.html">Home</a>
             <a href="education.html">Education</a>
             <a href="project.html" class="active" aria-current="page">Projects</a>
@@ -696,649 +673,757 @@
         </nav>
     </header>
 
-    <main>
+    <main class="page-container">
 
-        <!-- Page introduction -->
-
-        <section class="page-heading">
-            <p class="eyebrow">Selected Engineering Work</p>
+        <section class="page-intro">
+            <div class="eyebrow">Selected work</div>
             <h1>Projects</h1>
-            <p class="page-intro">
-                Explore a selection of engineering projects, from mechanical
-                design and intelligent control to automation and computational
-                systems. Each project highlights the ideas, technical approaches,
-                and practical work behind its development.
+            <p>
+                Explore a selection of engineering projects spanning mechanical
+                design, intelligent control, automation, and emerging technologies.
             </p>
         </section>
 
-        <!-- Projects gallery -->
+        <section class="projects-grid" id="projectsGrid" aria-label="Engineering projects">
 
-        <section class="projects-section" id="project-gallery">
+            <!-- Project 1 -->
+            <article class="project-card"
+                style="--visual-bg: #E9E0E9;"
+                data-project="eps">
 
-            <div class="projects-grid">
-
-                <!-- Project 1: Intelligent Electric Power Steering -->
-
-                <article class="project-card" id="project-steering">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <span class="placeholder-symbol">01</span>
-                            <span class="placeholder-label">Prototype · Control</span>
-                        </div>
+                <div class="project-visual">
+                    <span class="visual-number">01</span>
+                    <div class="visual-label">
+                        Intelligent Electric Power Steering
+                        <span>Control systems · Mechanical design</span>
                     </div>
+                </div>
 
-                    <div class="project-summary">
-                        <p class="project-category">Control Systems</p>
-                        <h3 class="project-title">Intelligent Electric Power Steering System</h3>
-                        <p class="project-description">
-                            An intelligent steering-assistance system combining
-                            adaptive control, simulation, and a physical prototype.
-                        </p>
+                <div class="project-summary">
+                    <div class="project-category">Control systems</div>
+                    <h2>Intelligent Electric Power Steering System</h2>
+                    <p>
+                        Design and prototyping of an electric power steering
+                        system using adaptive control to adjust steering
+                        assistance to driving conditions.
+                    </p>
+
+                    <div class="project-bottom">
                         <div class="project-tags">
-                            <span class="project-tag">Fuzzy Logic</span>
-                            <span class="project-tag">MATLAB / Simulink</span>
-                            <span class="project-tag">Prototyping</span>
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">Simulink</span>
+                            <span class="tag">SolidWorks</span>
                         </div>
-                        <button class="project-toggle" type="button"
-                            aria-expanded="false" aria-controls="details-steering">
-                            <span class="toggle-label">
-                                <span class="toggle-symbol">+</span>
-                                <span class="toggle-text">Explore project</span>
-                            </span>
-                            <span class="toggle-hint">01</span>
+
+                        <button class="project-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
                     </div>
+                </div>
+            </article>
 
-                    <div class="project-details" id="details-steering">
-                        <div class="details-header">
-                            <div>
-                                <p class="details-eyebrow">Project 01 · Control Systems</p>
-                                <h3 class="details-title">Intelligent Electric Power Steering System</h3>
-                            </div>
-                        </div>
+            <!-- Project 2 -->
+            <article class="project-card"
+                style="--visual-bg: #E0ECEA;"
+                data-project="blinker">
 
-                        <div class="details-grid">
-                            <section class="detail-section">
-                                <h4><span class="detail-number">01</span> The Challenge</h4>
-                                <p>
-                                    Develop a steering-assistance system that adapts
-                                    motor assistance to driving conditions and steering
-                                    input while remaining practical to implement in a
-                                    physical prototype.
-                                </p>
-                            </section>
-
-                            <section class="detail-section">
-                                <h4><span class="detail-number">02</span> My Approach</h4>
-                                <p>
-                                    Designed a fuzzy-logic-based adaptive controller
-                                    using vehicle velocity, steering effort, and yaw
-                                    rate as inputs to determine motor torque. A PID
-                                    controller was also considered for evaluation.
-                                </p>
-                            </section>
-
-                            <section class="detail-section">
-                                <h4><span class="detail-number">03</span> System Design</h4>
-                                <p>
-                                    The system combined the steering mechanism, motor,
-                                    torque measurement, and control unit. The controller
-                                    was evaluated in simulation before integration with
-                                    the physical cart prototype.
-                                </p>
-                                <div class="technical-visuals">
-                                    <div class="technical-visual">
-                                        <div>
-                                            <span>Control Architecture</span>
-                                            Add your actual control-system diagram here.
-                                        </div>
-                                    </div>
-                                    <div class="technical-visual">
-                                        <div>
-                                            <span>Physical Prototype</span>
-                                            Add a photo of your steering prototype here.
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section class="detail-section">
-                                <h4><span class="detail-number">04</span> Implementation</h4>
-                                <p>
-                                    The project combined mechanical design, control
-                                    development, simulation, component integration,
-                                    and physical prototyping.
-                                </p>
-                                <div class="implementation-tags">
-                                    <span class="implementation-tag">SolidWorks</span>
-                                    <span class="implementation-tag">MATLAB</span>
-                                    <span class="implementation-tag">Simulink</span>
-                                    <span class="implementation-tag">Fuzzy Logic</span>
-                                </div>
-                            </section>
-
-                            <section class="detail-section full-width">
-                                <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
-                                <div class="results-note">
-                                    The controller was evaluated in Simulink and on a
-                                    physical prototype. Add your verified test results,
-                                    comparisons, and observations here.
-                                </div>
-                            </section>
-                        </div>
+                <div class="project-visual">
+                    <span class="visual-number">02</span>
+                    <div class="visual-label">
+                        Blinker
+                        <span>Engineering design · Prototyping</span>
                     </div>
-                </article>
+                </div>
 
-                <!-- Project 2: Blinker -->
+                <div class="project-summary">
+                    <div class="project-category">Engineering design</div>
+                    <h2>Blinker</h2>
+                    <p>
+                        An engineering project exploring the design and
+                        development of a functional system, from its initial
+                        concept through implementation.
+                    </p>
 
-                <article class="project-card" id="project-blinker">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <span class="placeholder-symbol">02</span>
-                            <span class="placeholder-label">Design · Engineering</span>
-                        </div>
-                    </div>
-
-                    <div class="project-summary">
-                        <p class="project-category">Engineering Design</p>
-                        <h3 class="project-title">Blinker</h3>
-                        <p class="project-description">
-                            An engineering project exploring the design and
-                            implementation of a blinker system.
-                        </p>
+                    <div class="project-bottom">
                         <div class="project-tags">
-                            <span class="project-tag">System Design</span>
-                            <span class="project-tag">Implementation</span>
+                            <span class="tag">Design</span>
+                            <span class="tag">Prototyping</span>
+                            <span class="tag">Testing</span>
                         </div>
-                        <button class="project-toggle" type="button"
-                            aria-expanded="false" aria-controls="details-blinker">
-                            <span class="toggle-label">
-                                <span class="toggle-symbol">+</span>
-                                <span class="toggle-text">Explore project</span>
-                            </span>
-                            <span class="toggle-hint">02</span>
+
+                        <button class="project-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
                     </div>
+                </div>
+            </article>
 
-                    <div class="project-details" id="details-blinker">
-                        <div class="details-header">
-                            <div>
-                                <p class="details-eyebrow">Project 02 · Engineering Design</p>
-                                <h3 class="details-title">Blinker</h3>
-                            </div>
-                        </div>
-                        <div class="details-grid">
-                            <section class="detail-section">
-                                <h4><span class="detail-number">01</span> The Challenge</h4>
-                                <p>Add the specific problem this project was designed to address.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">02</span> My Approach</h4>
-                                <p>Describe your concept, design decisions, and the engineering process you followed.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">03</span> System Design</h4>
-                                <p>Add the relevant mechanical, electrical, or electronic design details.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">04</span> Implementation</h4>
-                                <p>Add the actual hardware, software, and tools you used.</p>
-                            </section>
-                            <section class="detail-section full-width">
-                                <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
-                                <p>Add the implementation status, tests performed, and verified outcomes.</p>
-                            </section>
-                        </div>
+            <!-- Project 3 -->
+            <article class="project-card"
+                style="--visual-bg: #E8E5F0;"
+                data-project="sorting">
+
+                <div class="project-visual">
+                    <span class="visual-number">03</span>
+                    <div class="visual-label">
+                        Disk Sorting Machine
+                        <span>Automation · Mechanical systems</span>
                     </div>
-                </article>
+                </div>
 
-                <!-- Project 3: Disk Sorting Machine -->
+                <div class="project-summary">
+                    <div class="project-category">Automation</div>
+                    <h2>Disk Sorting Machine</h2>
+                    <p>
+                        Development of an automated sorting system combining
+                        mechanical components, sensing, and control to organize
+                        objects according to defined criteria.
+                    </p>
 
-                <article class="project-card" id="project-disk-sorting">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <span class="placeholder-symbol">03</span>
-                            <span class="placeholder-label">Automation · Sorting</span>
-                        </div>
-                    </div>
-
-                    <div class="project-summary">
-                        <p class="project-category">Industrial Automation</p>
-                        <h3 class="project-title">Disk Sorting Machine</h3>
-                        <p class="project-description">
-                            An automated sorting system combining mechanical
-                            handling with sensing and control.
-                        </p>
+                    <div class="project-bottom">
                         <div class="project-tags">
-                            <span class="project-tag">Automation</span>
-                            <span class="project-tag">Sensors</span>
-                            <span class="project-tag">Control</span>
+                            <span class="tag">Automation</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Control</span>
                         </div>
-                        <button class="project-toggle" type="button"
-                            aria-expanded="false" aria-controls="details-disk-sorting">
-                            <span class="toggle-label">
-                                <span class="toggle-symbol">+</span>
-                                <span class="toggle-text">Explore project</span>
-                            </span>
-                            <span class="toggle-hint">03</span>
+
+                        <button class="project-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
                     </div>
+                </div>
+            </article>
 
-                    <div class="project-details" id="details-disk-sorting">
-                        <div class="details-header">
-                            <div>
-                                <p class="details-eyebrow">Project 03 · Automation</p>
-                                <h3 class="details-title">Disk Sorting Machine</h3>
-                            </div>
-                        </div>
-                        <div class="details-grid">
-                            <section class="detail-section">
-                                <h4><span class="detail-number">01</span> The Challenge</h4>
-                                <p>Add the sorting task and the criteria used to classify the disks.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">02</span> My Approach</h4>
-                                <p>Describe the sorting sequence and the decisions behind your design.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">03</span> System Design</h4>
-                                <p>Add the mechanism layout, sensors, actuators, and control sequence.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">04</span> Implementation</h4>
-                                <p>Add the actual components, programming environment, and tools.</p>
-                            </section>
-                            <section class="detail-section full-width">
-                                <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
-                                <p>Add the observed sorting performance and any verified test results.</p>
-                            </section>
-                        </div>
+            <!-- Project 4 -->
+            <article class="project-card"
+                style="--visual-bg: #F0E5DE;"
+                data-project="formula">
+
+                <div class="project-visual">
+                    <span class="visual-number">04</span>
+                    <div class="visual-label">
+                        Formula Student
+                        <span>Vehicle design · Engineering analysis</span>
                     </div>
-                </article>
+                </div>
 
-                <!-- Project 4: Formula Student -->
+                <div class="project-summary">
+                    <div class="project-category">Mechanical design</div>
+                    <h2>Formula Student Car Design and Analysis</h2>
+                    <p>
+                        Application of mechanical engineering principles to
+                        vehicle design and analysis, considering the interaction
+                        between components and overall performance.
+                    </p>
 
-                <article class="project-card" id="project-formula-student">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <span class="placeholder-symbol">04</span>
-                            <span class="placeholder-label">CAD · Vehicle Design</span>
-                        </div>
-                    </div>
-
-                    <div class="project-summary">
-                        <p class="project-category">Mechanical Design</p>
-                        <h3 class="project-title">Formula Student Car Design and Analysis</h3>
-                        <p class="project-description">
-                            Vehicle design and engineering analysis focused on
-                            the integration of mechanical systems.
-                        </p>
+                    <div class="project-bottom">
                         <div class="project-tags">
-                            <span class="project-tag">CAD</span>
-                            <span class="project-tag">Mechanical Design</span>
-                            <span class="project-tag">Analysis</span>
+                            <span class="tag">CAD</span>
+                            <span class="tag">Analysis</span>
+                            <span class="tag">Vehicle design</span>
                         </div>
-                        <button class="project-toggle" type="button"
-                            aria-expanded="false" aria-controls="details-formula-student">
-                            <span class="toggle-label">
-                                <span class="toggle-symbol">+</span>
-                                <span class="toggle-text">Explore project</span>
-                            </span>
-                            <span class="toggle-hint">04</span>
+
+                        <button class="project-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
                     </div>
+                </div>
+            </article>
 
-                    <div class="project-details" id="details-formula-student">
-                        <div class="details-header">
-                            <div>
-                                <p class="details-eyebrow">Project 04 · Mechanical Design</p>
-                                <h3 class="details-title">Formula Student Car Design and Analysis</h3>
-                            </div>
-                        </div>
-                        <div class="details-grid">
-                            <section class="detail-section">
-                                <h4><span class="detail-number">01</span> The Challenge</h4>
-                                <p>Describe the vehicle design objectives and engineering constraints.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">02</span> My Approach</h4>
-                                <p>Explain your design process, component choices, and analysis methods.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">03</span> System Design</h4>
-                                <p>Show the CAD assembly, individual components, or engineering drawings.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">04</span> Implementation</h4>
-                                <p>Specify the CAD software, simulation tools, and your individual contribution.</p>
-                            </section>
-                            <section class="detail-section full-width">
-                                <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
-                                <p>Add the actual analysis results, design comparisons, and conclusions.</p>
-                            </section>
-                        </div>
+            <!-- Project 5 -->
+            <article class="project-card"
+                style="--visual-bg: #E4EAE0;"
+                data-project="industrial">
+
+                <div class="project-visual">
+                    <span class="visual-number">05</span>
+                    <div class="visual-label">
+                        Industrial Automation
+                        <span>PLC · Sensors · Control systems</span>
                     </div>
-                </article>
+                </div>
 
-                <!-- Project 5: Industrial Automation -->
+                <div class="project-summary">
+                    <div class="project-category">Industrial systems</div>
+                    <h2>Industrial Automation</h2>
+                    <p>
+                        Exploration of automated industrial processes through
+                        control logic, sensor inputs, and coordinated system
+                        operation.
+                    </p>
 
-                <article class="project-card" id="project-industrial-automation">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <span class="placeholder-symbol">05</span>
-                            <span class="placeholder-label">PLC · Automation</span>
-                        </div>
-                    </div>
-
-                    <div class="project-summary">
-                        <p class="project-category">Intelligent Systems</p>
-                        <h3 class="project-title">Industrial Automation</h3>
-                        <p class="project-description">
-                            An automation project focused on coordinating
-                            equipment, control logic, and process operation.
-                        </p>
+                    <div class="project-bottom">
                         <div class="project-tags">
-                            <span class="project-tag">Automation</span>
-                            <span class="project-tag">Control Logic</span>
-                            <span class="project-tag">System Integration</span>
+                            <span class="tag">PLC</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Automation</span>
                         </div>
-                        <button class="project-toggle" type="button"
-                            aria-expanded="false" aria-controls="details-industrial-automation">
-                            <span class="toggle-label">
-                                <span class="toggle-symbol">+</span>
-                                <span class="toggle-text">Explore project</span>
-                            </span>
-                            <span class="toggle-hint">05</span>
+
+                        <button class="project-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
                     </div>
+                </div>
+            </article>
 
-                    <div class="project-details" id="details-industrial-automation">
-                        <div class="details-header">
-                            <div>
-                                <p class="details-eyebrow">Project 05 · Automation</p>
-                                <h3 class="details-title">Industrial Automation</h3>
-                            </div>
-                        </div>
-                        <div class="details-grid">
-                            <section class="detail-section">
-                                <h4><span class="detail-number">01</span> The Challenge</h4>
-                                <p>Describe the process or task that required automation.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">02</span> My Approach</h4>
-                                <p>Explain the control strategy and the workflow you designed.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">03</span> System Design</h4>
-                                <p>Add the system architecture, I/O layout, or control diagram.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">04</span> Implementation</h4>
-                                <p>List the actual controller, programming tools, sensors, and actuators.</p>
-                            </section>
-                            <section class="detail-section full-width">
-                                <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
-                                <p>Describe what was tested and the results you observed.</p>
-                            </section>
-                        </div>
+            <!-- Project 6 -->
+            <article class="project-card"
+                style="--visual-bg: #E4E8F1;"
+                data-project="ai">
+
+                <div class="project-visual">
+                    <span class="visual-number">06</span>
+                    <div class="visual-label">
+                        AI and Machine Learning
+                        <span>Programming · Intelligent systems</span>
                     </div>
-                </article>
+                </div>
 
-                <!-- Project 6: AI and Machine Learning -->
+                <div class="project-summary">
+                    <div class="project-category">Intelligent systems</div>
+                    <h2>AI and Machine Learning</h2>
+                    <p>
+                        Application of programming and machine learning
+                        concepts to explore how data can support intelligent
+                        decision-making.
+                    </p>
 
-                <article class="project-card" id="project-ai-ml">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <span class="placeholder-symbol">06</span>
-                            <span class="placeholder-label">AI · Data</span>
-                        </div>
-                    </div>
-
-                    <div class="project-summary">
-                        <p class="project-category">Artificial Intelligence</p>
-                        <h3 class="project-title">AI and Machine Learning</h3>
-                        <p class="project-description">
-                            A computational project exploring the application
-                            of machine learning to an engineering problem.
-                        </p>
+                    <div class="project-bottom">
                         <div class="project-tags">
-                            <span class="project-tag">Machine Learning</span>
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Data Analysis</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Machine learning</span>
+                            <span class="tag">Data</span>
                         </div>
-                        <button class="project-toggle" type="button"
-                            aria-expanded="false" aria-controls="details-ai-ml">
-                            <span class="toggle-label">
-                                <span class="toggle-symbol">+</span>
-                                <span class="toggle-text">Explore project</span>
-                            </span>
-                            <span class="toggle-hint">06</span>
+
+                        <button class="project-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
                     </div>
+                </div>
+            </article>
 
-                    <div class="project-details" id="details-ai-ml">
-                        <div class="details-header">
-                            <div>
-                                <p class="details-eyebrow">Project 06 · Artificial Intelligence</p>
-                                <h3 class="details-title">AI and Machine Learning</h3>
-                            </div>
-                        </div>
-                        <div class="details-grid">
-                            <section class="detail-section">
-                                <h4><span class="detail-number">01</span> The Challenge</h4>
-                                <p>Define the problem and why a machine-learning approach was relevant.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">02</span> My Approach</h4>
-                                <p>Explain the model, data preparation, features, and methodology actually used.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">03</span> System Design</h4>
-                                <p>Add the model pipeline, workflow diagram, or evaluation visualization.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">04</span> Implementation</h4>
-                                <p>Specify the language, libraries, environment, and your contribution.</p>
-                            </section>
-                            <section class="detail-section full-width">
-                                <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
-                                <p>Add the actual evaluation metrics and findings. Avoid claiming performance without evidence.</p>
-                            </section>
-                        </div>
+            <!-- Project 7 -->
+            <article class="project-card"
+                style="--visual-bg: #E4EEED;"
+                data-project="dam">
+
+                <div class="project-visual">
+                    <span class="visual-number">07</span>
+                    <div class="visual-label">
+                        Dam Water Level Control
+                        <span>Instrumentation · Feedback control</span>
                     </div>
-                </article>
+                </div>
 
-                <!-- Project 7: Dam Water Level Control -->
+                <div class="project-summary">
+                    <div class="project-category">Control systems</div>
+                    <h2>Dam Water Level Control</h2>
+                    <p>
+                        Design of a water-level control system exploring
+                        measurement, feedback, and system response to changing
+                        operating conditions.
+                    </p>
 
-                <article class="project-card" id="project-dam-control">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <span class="placeholder-symbol">07</span>
-                            <span class="placeholder-label">Control · Monitoring</span>
-                        </div>
-                    </div>
-
-                    <div class="project-summary">
-                        <p class="project-category">Control Engineering</p>
-                        <h3 class="project-title">Dam Water Level Control</h3>
-                        <p class="project-description">
-                            A water-level regulation project focused on
-                            monitoring system behavior and control response.
-                        </p>
+                    <div class="project-bottom">
                         <div class="project-tags">
-                            <span class="project-tag">Control Systems</span>
-                            <span class="project-tag">Monitoring</span>
-                            <span class="project-tag">Simulation</span>
+                            <span class="tag">Control</span>
+                            <span class="tag">Instrumentation</span>
+                            <span class="tag">Simulation</span>
                         </div>
-                        <button class="project-toggle" type="button"
-                            aria-expanded="false" aria-controls="details-dam-control">
-                            <span class="toggle-label">
-                                <span class="toggle-symbol">+</span>
-                                <span class="toggle-text">Explore project</span>
-                            </span>
-                            <span class="toggle-hint">07</span>
+
+                        <button class="project-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
                     </div>
+                </div>
+            </article>
 
-                    <div class="project-details" id="details-dam-control">
-                        <div class="details-header">
-                            <div>
-                                <p class="details-eyebrow">Project 07 · Control Engineering</p>
-                                <h3 class="details-title">Dam Water Level Control</h3>
-                            </div>
-                        </div>
-                        <div class="details-grid">
-                            <section class="detail-section">
-                                <h4><span class="detail-number">01</span> The Challenge</h4>
-                                <p>Describe the water-level regulation objective and operating constraints.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">02</span> My Approach</h4>
-                                <p>Explain the control strategy and how water-level changes were handled.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">03</span> System Design</h4>
-                                <p>Add the system diagram, sensor arrangement, and actuator or gate logic.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">04</span> Implementation</h4>
-                                <p>Specify the tools, controller, and simulation or hardware used.</p>
-                            </section>
-                            <section class="detail-section full-width">
-                                <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
-                                <p>Add the actual response plots, observations, and verified outcomes.</p>
-                            </section>
-                        </div>
+            <!-- Project 8 -->
+            <article class="project-card"
+                style="--visual-bg: #EEE4E8;"
+                data-project="engine">
+
+                <div class="project-visual">
+                    <span class="visual-number">08</span>
+                    <div class="visual-label">
+                        V12 Engine
+                        <span>3D modelling · Mechanical design</span>
                     </div>
-                </article>
+                </div>
 
-                <!-- Project 8: V12 Engine Design -->
+                <div class="project-summary">
+                    <div class="project-category">Mechanical design</div>
+                    <h2>V12 Engine Design</h2>
+                    <p>
+                        A mechanical design project focused on the geometry
+                        and arrangement of a V12 engine and its major
+                        components.
+                    </p>
 
-                <article class="project-card" id="project-v12">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <span class="placeholder-symbol">08</span>
-                            <span class="placeholder-label">CAD · Mechanisms</span>
-                        </div>
-                    </div>
-
-                    <div class="project-summary">
-                        <p class="project-category">Mechanical Design</p>
-                        <h3 class="project-title">V12 Engine Design</h3>
-                        <p class="project-description">
-                            A mechanical design project exploring the assembly
-                            and arrangement of a V12 engine.
-                        </p>
+                    <div class="project-bottom">
                         <div class="project-tags">
-                            <span class="project-tag">3D CAD</span>
-                            <span class="project-tag">Engine Design</span>
-                            <span class="project-tag">Assembly</span>
+                            <span class="tag">CAD</span>
+                            <span class="tag">3D modelling</span>
+                            <span class="tag">Mechanics</span>
                         </div>
-                        <button class="project-toggle" type="button"
-                            aria-expanded="false" aria-controls="details-v12">
-                            <span class="toggle-label">
-                                <span class="toggle-symbol">+</span>
-                                <span class="toggle-text">Explore project</span>
-                            </span>
-                            <span class="toggle-hint">08</span>
+
+                        <button class="project-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="projectDetails">
+                            <span class="toggle-text">Explore project</span>
+                            <span class="toggle-symbol" aria-hidden="true">+</span>
                         </button>
                     </div>
-
-                    <div class="project-details" id="details-v12">
-                        <div class="details-header">
-                            <div>
-                                <p class="details-eyebrow">Project 08 · Mechanical Design</p>
-                                <h3 class="details-title">V12 Engine Design</h3>
-                            </div>
-                        </div>
-                        <div class="details-grid">
-                            <section class="detail-section">
-                                <h4><span class="detail-number">01</span> The Challenge</h4>
-                                <p>Describe the design brief, engine configuration, and project requirements.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">02</span> My Approach</h4>
-                                <p>Explain how the engine assembly and its main components were designed.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">03</span> System Design</h4>
-                                <p>Add your CAD assembly, exploded view, and component details.</p>
-                            </section>
-                            <section class="detail-section">
-                                <h4><span class="detail-number">04</span> Implementation</h4>
-                                <p>Specify the CAD software, modeling methods, and components you developed.</p>
-                            </section>
-                            <section class="detail-section full-width">
-                                <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
-                                <p>Describe any assembly checks, motion studies, or analyses actually performed.</p>
-                            </section>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-
-            <a href="index.html" class="back-link">← Back to Home</a>
+                </div>
+            </article>
 
         </section>
+
+        <!-- One shared panel: project details appear here -->
+        <section class="details-shell"
+            id="projectDetails"
+            aria-label="Selected project details"
+            aria-hidden="true"
+            inert>
+
+            <div class="details-clip">
+                <article class="details-panel">
+
+                    <header class="details-heading">
+                        <div>
+                            <div class="project-category" id="detailsCategory">
+                                Project details
+                            </div>
+                            <h2 id="detailsTitle">Project title</h2>
+                        </div>
+
+                        <button class="collapse-button"
+                            id="closeDetails"
+                            type="button"
+                            aria-label="Close project details">
+                            &times;
+                        </button>
+                    </header>
+
+                    <div class="details-content">
+                        <div class="details-left">
+                            <div class="details-image" id="detailsImage">
+                                <div class="details-image-label" id="detailsImageLabel">
+                                    Project visual
+                                    <span>Images can be added here</span>
+                                </div>
+                            </div>
+
+                            <p class="details-image-note" id="detailsImageNote">
+                                Project images and diagrams can be added to this section.
+                            </p>
+
+                            <section class="details-section">
+                                <h3>Tools and technologies</h3>
+                                <div class="details-tools" id="detailsTools"></div>
+                            </section>
+                        </div>
+
+                        <div class="details-right">
+                            <section class="details-section">
+                                <h3>Overview</h3>
+                                <p id="detailsOverview"></p>
+                            </section>
+
+                            <section class="details-section">
+                                <h3>Approach</h3>
+                                <p id="detailsApproach"></p>
+                            </section>
+
+                            <section class="details-section">
+                                <h3>Key aspects</h3>
+                                <ul id="detailsHighlights"></ul>
+                            </section>
+
+                            <section class="details-section">
+                                <h3>Outcome</h3>
+                                <p id="detailsOutcome"></p>
+                            </section>
+                        </div>
+                    </div>
+
+                </article>
+            </div>
+        </section>
+
     </main>
 
-    <footer>
-        <p>© 2026 Stephanie Naous · Engineering with purpose.</p>
+    <footer class="site-footer">
+        © 2026 Stephanie Naous · Engineering with purpose.
     </footer>
 
     <script>
-        const projectCards = document.querySelectorAll(".project-card");
+        const projectData = {
+            eps: {
+                title: "Intelligent Electric Power Steering System",
+                category: "Control systems · Mechanical design",
+                image: "Intelligent Electric Power Steering System",
+                imageNote: "Add photographs of the physical prototype, CAD model, and simulation results.",
+                overview:
+                    "This project focused on the design and development of an intelligent electric power steering system. The aim was to adapt steering assistance to driving conditions and steering input while developing and testing a functional physical cart prototype.",
+                approach:
+                    "A fuzzy logic-based adaptive controller was developed using vehicle velocity, steering effort, and yaw rate as inputs, with motor torque as the output. The control strategy was evaluated in MATLAB and Simulink, alongside the mechanical design and construction of the prototype. PID control was also considered during the control-system development.",
+                highlights: [
+                    "Mechanical design and assembly of a functional cart prototype.",
+                    "Adaptive steering assistance based on multiple driving inputs.",
+                    "Simulation and evaluation of the controller in MATLAB and Simulink.",
+                    "Integration of steering, motor, torque measurement, and control components."
+                ],
+                outcome:
+                    "The project combined control-system development, simulation, and physical prototyping to explore adaptive steering assistance. Quantitative performance results can be added here once the final simulation and experimental measurements are available.",
+                tools: [
+                    "SolidWorks",
+                    "MATLAB",
+                    "Simulink",
+                    "Fuzzy Logic",
+                    "Prototyping"
+                ],
+                visualBg: "#E9E0E9"
+            },
 
-        function closeProject(card) {
-            card.classList.remove("is-expanded");
+            blinker: {
+                title: "Blinker",
+                category: "Engineering design · Prototyping",
+                image: "Blinker",
+                imageNote: "Add the project photograph, design drawings, or prototype images.",
+                overview:
+                    "Blinker was an engineering project involving the development of a system from an initial concept toward a practical implementation.",
+                approach:
+                    "The project involved considering the design requirements, selecting an appropriate technical approach, and developing a solution that could be implemented and evaluated.",
+                highlights: [
+                    "Definition of the project requirements and objectives.",
+                    "Development of the proposed engineering solution.",
+                    "Consideration of design constraints and implementation.",
+                    "Evaluation of the resulting system."
+                ],
+                outcome:
+                    "Add the specific final result, demonstrated functionality, and your individual contributions to this project.",
+                tools: [
+                    "Engineering design",
+                    "Prototyping",
+                    "Testing"
+                ],
+                visualBg: "#E0ECEA"
+            },
+
+            sorting: {
+                title: "Disk Sorting Machine",
+                category: "Automation · Mechanical systems",
+                image: "Disk Sorting Machine",
+                imageNote: "Add photographs of the machine, sorting mechanism, and control setup.",
+                overview:
+                    "The Disk Sorting Machine project explored the development of an automated system to sort disks according to defined criteria.",
+                approach:
+                    "The system combines mechanical handling with sensing and control. The design process considers how objects are identified, transferred, and directed through the sorting process.",
+                highlights: [
+                    "Mechanical arrangement of the sorting system.",
+                    "Use of sensing to distinguish or detect objects.",
+                    "Coordination of the sorting sequence.",
+                    "Consideration of repeatability and reliable operation."
+                ],
+                outcome:
+                    "Add the specific sorting criteria, implemented mechanism, and final testing results from your project.",
+                tools: [
+                    "Mechanical design",
+                    "Sensors",
+                    "Automation",
+                    "Control systems"
+                ],
+                visualBg: "#E8E5F0"
+            },
+
+            formula: {
+                title: "Formula Student Car Design and Analysis",
+                category: "Mechanical design · Vehicle engineering",
+                image: "Formula Student Car Design",
+                imageNote: "Add the vehicle CAD model, component drawings, or analysis visualizations.",
+                overview:
+                    "This project applied mechanical engineering principles to the design and analysis of a Formula Student car, considering the arrangement and performance of vehicle components.",
+                approach:
+                    "The work involved developing and assessing mechanical design concepts while considering vehicle requirements, component geometry, and engineering constraints.",
+                highlights: [
+                    "Vehicle and component design considerations.",
+                    "Application of mechanical engineering principles.",
+                    "Evaluation of design constraints and performance requirements.",
+                    "Use of engineering analysis to support design decisions."
+                ],
+                outcome:
+                    "Add the specific components you designed or analysed, the methods used, and any final results or design decisions.",
+                tools: [
+                    "CAD",
+                    "Mechanical design",
+                    "Engineering analysis"
+                ],
+                visualBg: "#F0E5DE"
+            },
+
+            industrial: {
+                title: "Industrial Automation",
+                category: "Industrial systems · Control",
+                image: "Industrial Automation",
+                imageNote: "Add a photograph of the automation setup, PLC logic, or system diagram.",
+                overview:
+                    "This project explored the use of industrial automation to coordinate a process through control logic, sensor inputs, and system outputs.",
+                approach:
+                    "The system was approached as a combination of process inputs, control decisions, and output actions. The objective was to understand how these elements work together to automate a sequence of operations.",
+                highlights: [
+                    "Understanding the sequence of an automated process.",
+                    "Relationship between sensors and control logic.",
+                    "Coordination of system inputs and outputs.",
+                    "Consideration of safe and reliable operation."
+                ],
+                outcome:
+                    "Add the specific process you automated, the PLC or controller used, and the final demonstrated functionality.",
+                tools: [
+                    "PLC",
+                    "Sensors",
+                    "Control logic",
+                    "Automation"
+                ],
+                visualBg: "#E4EAE0"
+            },
+
+            ai: {
+                title: "AI and Machine Learning",
+                category: "Intelligent systems · Programming",
+                image: "AI and Machine Learning",
+                imageNote: "Add a visualization of the model, workflow, dataset, or results.",
+                overview:
+                    "This project explored artificial intelligence and machine learning concepts through programming and the use of data to support intelligent decision-making.",
+                approach:
+                    "The work involved applying computational methods to a defined problem, considering how data is processed and how a model or algorithm can produce a useful output.",
+                highlights: [
+                    "Translation of a problem into a computational task.",
+                    "Use of programming to implement the approach.",
+                    "Exploration of data-driven methods.",
+                    "Assessment of the generated outputs."
+                ],
+                outcome:
+                    "Add the specific problem, algorithm, dataset, and evaluation results from your project.",
+                tools: [
+                    "Python",
+                    "Machine learning",
+                    "Data analysis"
+                ],
+                visualBg: "#E4E8F1"
+            },
+
+            dam: {
+                title: "Dam Water Level Control",
+                category: "Control systems · Instrumentation",
+                image: "Dam Water Level Control",
+                imageNote: "Add the control-system diagram, simulation, or instrumentation setup.",
+                overview:
+                    "This project examined water-level regulation in a dam through measurement, feedback, and control of the system response.",
+                approach:
+                    "The control problem can be considered in terms of the measured water level, the desired setpoint, and the action needed to respond to changes in the system. The design considers how feedback can help maintain the target level.",
+                highlights: [
+                    "Identification of the controlled variable and setpoint.",
+                    "Consideration of measurement and feedback.",
+                    "Analysis of system response to changing conditions.",
+                    "Evaluation of control behaviour."
+                ],
+                outcome:
+                    "Add the implemented controller, simulation or experimental setup, and the results obtained.",
+                tools: [
+                    "Control systems",
+                    "Instrumentation",
+                    "Simulation"
+                ],
+                visualBg: "#E4EEED"
+            },
+
+            engine: {
+                title: "V12 Engine Design",
+                category: "Mechanical design · 3D modelling",
+                image: "V12 Engine Design",
+                imageNote: "Add the engine assembly, exploded view, and detailed component renders.",
+                overview:
+                    "The V12 Engine Design project focused on the three-dimensional representation and mechanical arrangement of a V12 engine and its main components.",
+                approach:
+                    "The design process involved considering component geometry, the arrangement of the cylinders, and how the major engine elements fit together within the assembly.",
+                highlights: [
+                    "Three-dimensional modelling of engine components.",
+                    "Consideration of the V12 cylinder arrangement.",
+                    "Assembly and spatial relationships between components.",
+                    "Attention to mechanical design and component fit."
+                ],
+                outcome:
+                    "Add the CAD software used, the components modelled, and the final assembly or design deliverables.",
+                tools: [
+                    "CAD",
+                    "3D modelling",
+                    "Mechanical design"
+                ],
+                visualBg: "#EEE4E8"
+            }
+        };
+
+        const cards = Array.from(
+            document.querySelectorAll(".project-card")
+        );
+
+        const detailsShell = document.getElementById("projectDetails");
+        const detailsTitle = document.getElementById("detailsTitle");
+        const detailsCategory = document.getElementById("detailsCategory");
+        const detailsImage = document.getElementById("detailsImage");
+        const detailsImageLabel = document.getElementById("detailsImageLabel");
+        const detailsImageNote = document.getElementById("detailsImageNote");
+        const detailsOverview = document.getElementById("detailsOverview");
+        const detailsApproach = document.getElementById("detailsApproach");
+        const detailsHighlights = document.getElementById("detailsHighlights");
+        const detailsOutcome = document.getElementById("detailsOutcome");
+        const detailsTools = document.getElementById("detailsTools");
+        const closeDetailsButton = document.getElementById("closeDetails");
+
+        let selectedCard = null;
+
+        function updateDetails(project) {
+            detailsTitle.textContent = project.title;
+            detailsCategory.textContent = project.category;
+            detailsImage.style.setProperty("--visual-bg", project.visualBg);
+            detailsImageLabel.innerHTML = "";
+
+            const imageTitle = document.createElement("div");
+            imageTitle.className = "details-image-label";
+            imageTitle.textContent = project.image;
+
+            const imageSubtitle = document.createElement("span");
+            imageSubtitle.textContent = "Project visual";
+
+            imageTitle.appendChild(imageSubtitle);
+            detailsImageLabel.replaceWith(imageTitle);
+            imageTitle.id = "detailsImageLabel";
+
+            detailsImageNote.textContent = project.imageNote;
+            detailsOverview.textContent = project.overview;
+            detailsApproach.textContent = project.approach;
+            detailsOutcome.textContent = project.outcome;
+
+            detailsHighlights.replaceChildren();
+
+            project.highlights.forEach((highlight) => {
+                const li = document.createElement("li");
+                li.textContent = highlight;
+                detailsHighlights.appendChild(li);
+            });
+
+            detailsTools.replaceChildren();
+
+            project.tools.forEach((tool) => {
+                const tag = document.createElement("span");
+                tag.className = "tag";
+                tag.textContent = tool;
+                detailsTools.appendChild(tag);
+            });
+        }
+
+        function setCardState(card, isSelected) {
+            card.classList.toggle("is-selected", isSelected);
 
             const toggle = card.querySelector(".project-toggle");
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.querySelector(".toggle-symbol").textContent = "+";
-            toggle.querySelector(".toggle-text").textContent = "Explore project";
+            toggle.setAttribute("aria-expanded", String(isSelected));
+            toggle.querySelector(".toggle-text").textContent =
+                isSelected ? "Close project" : "Explore project";
+            toggle.querySelector(".toggle-symbol").textContent =
+                isSelected ? "−" : "+";
         }
 
         function openProject(card) {
-            projectCards.forEach((otherCard) => {
-                if (otherCard !== card) {
-                    closeProject(otherCard);
-                }
-            });
+            const project = projectData[card.dataset.project];
 
-            card.classList.add("is-expanded");
+            if (!project) {
+                return;
+            }
 
-            const toggle = card.querySelector(".project-toggle");
-            toggle.setAttribute("aria-expanded", "true");
-            toggle.querySelector(".toggle-symbol").textContent = "−";
-            toggle.querySelector(".toggle-text").textContent = "Close project";
+            // Clicking the already selected project closes the panel.
+            if (selectedCard === card && detailsShell.classList.contains("is-open")) {
+                closeProject();
+                return;
+            }
 
-            /*
-             * Wait for the expanded layout to be applied,
-             * then bring the selected project into view.
-             */
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    card.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                });
-            });
+            // Keep the grid still. Only update the shared panel below it.
+            cards.forEach((item) => setCardState(item, item === card));
+
+            selectedCard = card;
+            updateDetails(project);
+
+            detailsShell.inert = false;
+            detailsShell.setAttribute("aria-hidden", "false");
+            detailsShell.classList.add("is-open");
         }
 
-        projectCards.forEach((card) => {
+        function closeProject() {
+            if (!selectedCard) {
+                return;
+            }
+
+            const previouslySelected = selectedCard;
+            setCardState(previouslySelected, false);
+            selectedCard = null;
+
+            detailsShell.classList.remove("is-open");
+            detailsShell.setAttribute("aria-hidden", "true");
+
+            // Wait until the closing animation finishes before hiding
+            // the panel from keyboard navigation.
+            window.setTimeout(() => {
+                if (!detailsShell.classList.contains("is-open")) {
+                    detailsShell.inert = true;
+                }
+            }, 360);
+        }
+
+        cards.forEach((card) => {
             const toggle = card.querySelector(".project-toggle");
 
             toggle.addEventListener("click", () => {
-                const isExpanded = card.classList.contains("is-expanded");
-
-                if (isExpanded) {
-                    closeProject(card);
-                } else {
-                    openProject(card);
-                }
+                openProject(card);
             });
+        });
+
+        closeDetailsButton.addEventListener("click", closeProject);
+
+        // Escape closes the panel without moving the page.
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && selectedCard) {
+                closeProject();
+                selectedCard.querySelector(".project-toggle").focus();
+            }
         });
     </script>
 
