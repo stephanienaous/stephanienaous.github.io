@@ -989,7 +989,7 @@
 
         </section>
 
-        <!-- Shared panel: the selected project's details appear here -->
+        <!-- Floating project details panel -->
 
         <section class="details-shell"
             id="projectDetails"
@@ -1054,6 +1054,16 @@
                                 <ul id="detailsHighlights"></ul>
                             </section>
 
+                            <section class="details-section" id="detailsRoleSection" hidden>
+                                <h3>My Role &amp; Technical Contributions</h3>
+                                <p id="detailsRole"></p>
+                            </section>
+
+                            <section class="details-section" id="detailsChallengesSection" hidden>
+                                <h3>Technical Challenges</h3>
+                                <ul id="detailsChallenges"></ul>
+                            </section>
+
                             <section class="details-section">
                                 <h3>Outcome</h3>
                                 <p id="detailsOutcome"></p>
@@ -1078,25 +1088,42 @@
                 category: "Control systems · Mechanical design",
                 image: "Intelligent Electric Power Steering System",
                 imageNote: "Add photographs of the physical prototype, CAD model, and simulation results.",
+
                 overview:
-                    "This project focused on the design and development of an intelligent electric power steering system. The aim was to adapt steering assistance to driving conditions and steering input while developing and testing a functional physical cart prototype.",
+                    "The Intelligent Electric Power Steering (EPS) System integrates mechanical engineering, embedded systems, and intelligent control to develop adaptive steering assistance. The project combines a motorized steering mechanism with a hybrid Fuzzy Logic–PID controller to regulate assistance according to steering inputs and driving conditions.",
+
                 approach:
-                    "A fuzzy logic-based adaptive controller was developed using vehicle velocity, steering effort, and yaw rate as inputs, with motor torque as the output. The control strategy was evaluated in MATLAB and Simulink, alongside the mechanical design and construction of the prototype. PID control was also considered during the control-system development.",
+                    "The project followed an iterative design process, from mechanical CAD modeling and system analysis to prototype fabrication and control implementation. MATLAB/Simulink was used to develop and evaluate the control strategy, while embedded hardware enabled sensor feedback and motor actuation.",
+
                 highlights: [
-                    "Mechanical design and assembly of a functional cart prototype.",
-                    "Adaptive steering assistance based on multiple driving inputs.",
-                    "Simulation and evaluation of the controller in MATLAB and Simulink.",
-                    "Integration of steering, motor, torque measurement, and control components."
+                    "Mechanical Design: Steering mechanisms, component integration, and manufacturable prototype development.",
+                    "Intelligent Control: Fuzzy logic for adaptive assist-torque generation, combined with PID control for motor-current regulation.",
+                    "Sensing & Embedded Systems: Rotary encoder, strain-gauge torque sensing, current measurement, and real-time microcontroller control."
                 ],
+
+                role:
+                    "Contributed to the development of the system's intelligent control architecture, exploring AI-based fuzzy logic control to adapt steering assistance to driver inputs and driving conditions. Worked with the integration of fuzzy inference, PID-based motor-current regulation, and closed-loop feedback, connecting sensor measurements to real-time motor actuation. Additional contributions included engineering requirements, steering-system analysis, and mechanical integration.",
+
+                challenges: [
+                    "Mechanical Integration: Adapting the initial automotive-inspired design to practical manufacturing and prototype constraints.",
+                    "Sensor Reliability: Improving torque-signal reliability through sensor calibration, filtering, and signal conditioning.",
+                    "Control-System Integration: Connecting sensor feedback, intelligent control algorithms, and motor actuation into a closed-loop system."
+                ],
+
                 outcome:
-                    "The project combined control-system development, simulation, and physical prototyping to explore adaptive steering assistance. Quantitative performance results can be added once the final simulation and experimental measurements are available.",
+                    "Developed a physical, motorized EPS prototype integrating mechanical, sensing, and actuation subsystems. Controller evaluation demonstrated adaptive assist-torque responses to variations in steering torque, angle, and vehicle speed, establishing a foundation for further mechatronic control development.",
+
                 tools: [
                     "SolidWorks",
                     "MATLAB",
                     "Simulink",
                     "Fuzzy Logic",
+                    "PID Control",
+                    "Embedded Systems",
+                    "Sensors",
                     "Prototyping"
                 ],
+
                 visualBg: "#E9E0E9"
             },
 
@@ -1105,23 +1132,29 @@
                 category: "Engineering design · Prototyping",
                 image: "Blinker",
                 imageNote: "Add the project photograph, design drawings, or prototype images.",
+
                 overview:
                     "Blinker was an engineering project involving the development of a system from an initial concept toward a practical implementation.",
+
                 approach:
                     "The project involved considering the design requirements, selecting an appropriate technical approach, and developing a solution that could be implemented and evaluated.",
+
                 highlights: [
                     "Definition of the project requirements and objectives.",
                     "Development of the proposed engineering solution.",
                     "Consideration of design constraints and implementation.",
                     "Evaluation of the resulting system."
                 ],
+
                 outcome:
                     "Add the specific final result, demonstrated functionality, and your individual contributions to this project.",
+
                 tools: [
                     "Engineering design",
                     "Prototyping",
                     "Testing"
                 ],
+
                 visualBg: "#E0ECEA"
             },
 
@@ -1130,23 +1163,29 @@
                 category: "Mechanical design · Vehicle engineering",
                 image: "Formula Student Car Design",
                 imageNote: "Add the vehicle CAD model, component drawings, or analysis visualizations.",
+
                 overview:
                     "This project applied mechanical engineering principles to the design and analysis of a Formula Student car, considering the arrangement and performance of vehicle components.",
+
                 approach:
                     "The work involved developing and assessing mechanical design concepts while considering vehicle requirements, component geometry, and engineering constraints.",
+
                 highlights: [
                     "Vehicle and component design considerations.",
                     "Application of mechanical engineering principles.",
                     "Evaluation of design constraints and performance requirements.",
                     "Use of engineering analysis to support design decisions."
                 ],
+
                 outcome:
                     "Add the specific components you designed or analysed, the methods used, and any final results or design decisions.",
+
                 tools: [
                     "CAD",
                     "Mechanical design",
                     "Engineering analysis"
                 ],
+
                 visualBg: "#F0E5DE"
             },
 
@@ -1155,23 +1194,29 @@
                 category: "Intelligent systems · Programming",
                 image: "AI and Machine Learning",
                 imageNote: "Add a visualization of the model, workflow, dataset, or results.",
+
                 overview:
                     "This project explored artificial intelligence and machine learning concepts through programming and the use of data to support intelligent decision-making.",
+
                 approach:
                     "The work involved applying computational methods to a defined problem, considering how data is processed and how a model or algorithm can produce a useful output.",
+
                 highlights: [
                     "Translation of a problem into a computational task.",
                     "Use of programming to implement the approach.",
                     "Exploration of data-driven methods.",
                     "Assessment of the generated outputs."
                 ],
+
                 outcome:
                     "Add the specific problem, algorithm, dataset, and evaluation results from your project.",
+
                 tools: [
                     "Python",
                     "Machine learning",
                     "Data analysis"
                 ],
+
                 visualBg: "#E4E8F1"
             },
 
@@ -1180,23 +1225,29 @@
                 category: "Control systems · Instrumentation",
                 image: "Dam Water Level Control",
                 imageNote: "Add the control-system diagram, simulation, or instrumentation setup.",
+
                 overview:
                     "This project examined water-level regulation in a dam through measurement, feedback, and control of the system response.",
+
                 approach:
                     "The control problem can be considered in terms of the measured water level, the desired setpoint, and the action needed to respond to changes in the system. The design considers how feedback can help maintain the target level.",
+
                 highlights: [
                     "Identification of the controlled variable and setpoint.",
                     "Consideration of measurement and feedback.",
                     "Analysis of system response to changing conditions.",
                     "Evaluation of control behaviour."
                 ],
+
                 outcome:
                     "Add the implemented controller, simulation or experimental setup, and the results obtained.",
+
                 tools: [
                     "Control systems",
                     "Instrumentation",
                     "Simulation"
                 ],
+
                 visualBg: "#E4EEED"
             },
 
@@ -1205,23 +1256,29 @@
                 category: "Mechanical design · 3D modelling",
                 image: "V12 Engine Design",
                 imageNote: "Add the engine assembly, exploded view, and detailed component renders.",
+
                 overview:
                     "The V12 Engine Design project focused on the three-dimensional representation and mechanical arrangement of a V12 engine and its main components.",
+
                 approach:
                     "The design process involved considering component geometry, the arrangement of the cylinders, and how the major engine elements fit together within the assembly.",
+
                 highlights: [
                     "Three-dimensional modelling of engine components.",
                     "Consideration of the V12 cylinder arrangement.",
                     "Assembly and spatial relationships between components.",
                     "Attention to mechanical design and component fit."
                 ],
+
                 outcome:
                     "Add the CAD software used, the components modelled, and the final assembly or design deliverables.",
+
                 tools: [
                     "CAD",
                     "3D modelling",
                     "Mechanical design"
                 ],
+
                 visualBg: "#EEE4E8"
             },
 
@@ -1230,24 +1287,30 @@
                 category: "Industrial systems · Control",
                 image: "Industrial Automation",
                 imageNote: "Add a photograph of the automation setup, PLC logic, or system diagram.",
+
                 overview:
                     "This project explored the use of industrial automation to coordinate a process through control logic, sensor inputs, and system outputs.",
+
                 approach:
                     "The system was approached as a combination of process inputs, control decisions, and output actions. The objective was to understand how these elements work together to automate a sequence of operations.",
+
                 highlights: [
                     "Understanding the sequence of an automated process.",
                     "Relationship between sensors and control logic.",
                     "Coordination of system inputs and outputs.",
                     "Consideration of safe and reliable operation."
                 ],
+
                 outcome:
                     "Add the specific process you automated, the PLC or controller used, and the final demonstrated functionality.",
+
                 tools: [
                     "PLC",
                     "Sensors",
                     "Control logic",
                     "Automation"
                 ],
+
                 visualBg: "#E4EAE0"
             },
 
@@ -1256,24 +1319,30 @@
                 category: "Automation · Mechanical systems",
                 image: "Disk Sorting Machine",
                 imageNote: "Add photographs of the machine, sorting mechanism, and control setup.",
+
                 overview:
                     "The Disk Sorting Machine project explored the development of an automated system to sort disks according to defined criteria.",
+
                 approach:
                     "The system combines mechanical handling with sensing and control. The design process considers how objects are identified, transferred, and directed through the sorting process.",
+
                 highlights: [
                     "Mechanical arrangement of the sorting system.",
                     "Use of sensing to distinguish or detect objects.",
                     "Coordination of the sorting sequence.",
                     "Consideration of repeatability and reliable operation."
                 ],
+
                 outcome:
                     "Add the specific sorting criteria, implemented mechanism, and final testing results from your project.",
+
                 tools: [
                     "Mechanical design",
                     "Sensors",
                     "Automation",
                     "Control systems"
                 ],
+
                 visualBg: "#E8E5F0"
             }
         };
@@ -1290,6 +1359,10 @@
         const detailsOverview = document.getElementById("detailsOverview");
         const detailsApproach = document.getElementById("detailsApproach");
         const detailsHighlights = document.getElementById("detailsHighlights");
+        const detailsRoleSection = document.getElementById("detailsRoleSection");
+        const detailsRole = document.getElementById("detailsRole");
+        const detailsChallengesSection = document.getElementById("detailsChallengesSection");
+        const detailsChallenges = document.getElementById("detailsChallenges");
         const detailsOutcome = document.getElementById("detailsOutcome");
         const detailsTools = document.getElementById("detailsTools");
         const closeDetailsButton = document.getElementById("closeDetails");
@@ -1317,6 +1390,21 @@
             detailsOverview.textContent = project.overview;
             detailsApproach.textContent = project.approach;
             detailsOutcome.textContent = project.outcome;
+
+            // Show optional sections only for projects that provide them.
+            detailsRoleSection.hidden = !project.role;
+            detailsRole.textContent = project.role || "";
+
+            detailsChallengesSection.hidden =
+                !project.challenges || project.challenges.length === 0;
+
+            detailsChallenges.replaceChildren();
+
+            (project.challenges || []).forEach((challenge) => {
+                const li = document.createElement("li");
+                li.textContent = challenge;
+                detailsChallenges.appendChild(li);
+            });
 
             detailsHighlights.replaceChildren();
 
@@ -1353,12 +1441,18 @@
             const project = projectData[card.dataset.project];
 
             if (!project) {
-                console.error("No project data found for:", card.dataset.project);
+                console.error(
+                    "No project data found for:",
+                    card.dataset.project
+                );
                 return;
             }
 
             // Clicking the selected project closes its details.
-            if (selectedCard === card && detailsShell.classList.contains("is-open")) {
+            if (
+                selectedCard === card &&
+                detailsShell.classList.contains("is-open")
+            ) {
                 closeProject();
                 return;
             }
@@ -1409,6 +1503,7 @@
                 if (!detailsShell.classList.contains("is-open")) {
                     detailsShell.inert = true;
                 }
+
                 closeTimer = null;
             }, 360);
         }
@@ -1426,7 +1521,9 @@
             closeProject();
 
             if (cardToFocus) {
-                cardToFocus.querySelector(".project-toggle").focus({ preventScroll: true });
+                cardToFocus
+                    .querySelector(".project-toggle")
+                    .focus({ preventScroll: true });
             }
         });
 
@@ -1435,7 +1532,10 @@
             if (event.target === detailsShell && selectedCard) {
                 const cardToFocus = selectedCard;
                 closeProject();
-                cardToFocus.querySelector(".project-toggle").focus({ preventScroll: true });
+
+                cardToFocus
+                    .querySelector(".project-toggle")
+                    .focus({ preventScroll: true });
             }
         });
 
@@ -1444,7 +1544,10 @@
             if (event.key === "Escape" && selectedCard) {
                 const cardToFocus = selectedCard;
                 closeProject();
-                cardToFocus.querySelector(".project-toggle").focus({ preventScroll: true });
+
+                cardToFocus
+                    .querySelector(".project-toggle")
+                    .focus({ preventScroll: true });
             }
         });
     </script>
