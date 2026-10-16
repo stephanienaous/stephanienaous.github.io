@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Projects | Stephanie Naous</title>
 
     <style>
@@ -48,7 +47,7 @@
             font: inherit;
         }
 
-        /* Header — consistent with the Education page */
+        /* Header */
 
         header {
             padding: 25px 8%;
@@ -86,12 +85,12 @@
             color: var(--dark-mauve);
         }
 
-        /* Page introduction */
+        /* Page heading */
 
         .page-heading {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 85px 8% 48px;
+            padding: 55px 8% 22px;
         }
 
         .eyebrow {
@@ -100,7 +99,7 @@
             font-weight: 700;
             letter-spacing: 2.5px;
             text-transform: uppercase;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
         }
 
         h1 {
@@ -109,14 +108,6 @@
             font-weight: 400;
             line-height: 1.15;
             letter-spacing: -1.5px;
-            margin-bottom: 18px;
-        }
-
-        .page-intro {
-            max-width: 700px;
-            color: var(--muted);
-            font-size: 1.05rem;
-            line-height: 1.85;
         }
 
         /* Projects gallery */
@@ -124,33 +115,22 @@
         .projects-section {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 10px 8% 100px;
-        }
-
-        .gallery-heading {
-            margin-bottom: 28px;
-        }
-
-        .gallery-heading h2 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(1.7rem, 3vw, 2.2rem);
-            font-weight: 400;
+            padding: 8px 8% 80px;
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 25px;
-            align-items: stretch;
+            align-items: start;
         }
 
-        /* Individual project cards */
+        /* Project cards */
 
         .project-card {
             min-width: 0;
             display: flex;
             flex-direction: column;
-            align-self: stretch;
             background-color: var(--white);
             border: 1px solid var(--border);
             border-radius: 7px;
@@ -168,12 +148,17 @@
         }
 
         .project-card.is-expanded {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            grid-template-rows: auto auto;
+            align-items: stretch;
             border-color: var(--mauve);
             box-shadow: 0 14px 36px rgba(32, 35, 51, 0.08);
             transform: none;
         }
 
-        /* Project image area */
+        /* Project image */
 
         .project-image {
             position: relative;
@@ -183,13 +168,12 @@
             width: 100%;
             aspect-ratio: 5 / 3;
             overflow: hidden;
-            background:
-                linear-gradient(
-                    135deg,
-                    #EEE5EE 0%,
-                    #F7F4F1 52%,
-                    #E4EFED 100%
-                );
+            background: linear-gradient(
+                135deg,
+                #EEE5EE 0%,
+                #F7F4F1 52%,
+                #E4EFED 100%
+            );
         }
 
         .project-image::before,
@@ -227,8 +211,6 @@
             transform: scale(1.035);
         }
 
-        /* Temporary image placeholders */
-
         .image-placeholder {
             position: relative;
             z-index: 1;
@@ -262,13 +244,14 @@
             text-transform: uppercase;
         }
 
-        /* Project card text */
+        /* Project summary */
 
         .project-summary {
             display: flex;
             flex-direction: column;
             flex: 1;
             padding: 22px 23px 24px;
+            min-width: 0;
         }
 
         .project-category {
@@ -320,6 +303,8 @@
             background-color: var(--light-teal);
             color: #477C77;
         }
+
+        /* Expand / collapse control */
 
         .project-toggle {
             display: flex;
@@ -374,36 +359,48 @@
         }
 
         .project-toggle:focus-visible,
-        .collapse-button:focus-visible,
         nav a:focus-visible,
         .back-link:focus-visible {
             outline: 2px solid var(--dark-mauve);
             outline-offset: 4px;
         }
 
-        /* Compact expanded project details */
+        /* Horizontal expanded details */
 
         .project-details {
             display: none;
-            padding: 23px;
-            border-top: 1px solid var(--border);
+            min-width: 0;
+            padding: 24px;
+            border-left: 1px solid var(--border);
             background-color: #FCFAF8;
             animation: revealDetails 0.25s ease both;
         }
 
         .project-card.is-expanded .project-details {
             display: block;
+            grid-column: 2;
+            grid-row: 1 / 3;
+        }
+
+        .project-card.is-expanded .project-image {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .project-card.is-expanded .project-summary {
+            grid-column: 1;
+            grid-row: 2;
         }
 
         @keyframes revealDetails {
             from {
                 opacity: 0;
-                transform: translateY(6px);
+                transform: translateX(6px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateX(0);
             }
         }
 
@@ -431,32 +428,7 @@
             line-height: 1.35;
         }
 
-        /* Small, easy-to-reach close button */
-
-        .collapse-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            padding: 0;
-            border: 1px solid #DCCBDD;
-            border-radius: 50%;
-            background-color: var(--white);
-            color: var(--dark-mauve);
-            font-size: 1.15rem;
-            line-height: 1;
-            cursor: pointer;
-            transition:
-                background-color 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .collapse-button:hover {
-            background-color: var(--light-mauve);
-            transform: rotate(90deg);
-        }
+        /* Details content */
 
         .details-grid {
             display: grid;
@@ -488,13 +460,12 @@
             color: #565765;
             font-size: 0.86rem;
             line-height: 1.75;
+            overflow-wrap: anywhere;
         }
 
         .detail-section.full-width {
             grid-column: 1 / -1;
         }
-
-        /* Technical visual placeholders */
 
         .technical-visuals {
             display: grid;
@@ -569,7 +540,7 @@
             border-top: 1px solid rgba(32, 35, 51, 0.08);
         }
 
-        /* Responsive layout */
+        /* Tablet */
 
         @media (max-width: 850px) {
             .projects-grid {
@@ -587,7 +558,21 @@
             .details-grid {
                 gap: 20px;
             }
+
+            .project-card.is-expanded {
+                grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-section.full-width {
+                grid-column: auto;
+            }
         }
+
+        /* Mobile */
 
         @media (max-width: 680px) {
             header {
@@ -608,15 +593,11 @@
             }
 
             .page-heading {
-                padding: 60px 7% 40px;
+                padding: 45px 7% 22px;
             }
 
             .projects-section {
-                padding: 5px 7% 70px;
-            }
-
-            .gallery-heading {
-                margin-bottom: 22px;
+                padding: 5px 7% 65px;
             }
 
             .projects-grid {
@@ -632,7 +613,29 @@
                 padding: 21px;
             }
 
-            .project-details {
+            /* Expanded cards stack on narrow screens */
+
+            .project-card.is-expanded {
+                grid-column: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .project-card.is-expanded .project-image {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .project-card.is-expanded .project-summary {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .project-card.is-expanded .project-details {
+                grid-column: auto;
+                grid-row: auto;
+                border-left: 0;
+                border-top: 1px solid var(--border);
                 padding: 21px;
             }
 
@@ -669,8 +672,6 @@
 
 <body>
 
-    <!-- Header -->
-
     <header>
         <a href="index.html" class="logo">SN.</a>
 
@@ -685,34 +686,18 @@
 
     <main>
 
-        <!-- Page introduction -->
-
         <section class="page-heading">
             <p class="eyebrow">Selected Engineering Work</p>
-
-            <h1>Projects &amp; Experiments</h1>
-
-            <p class="page-intro">
-                From mechanical design and intelligent control to automation
-                and machine learning, explore the engineering projects through
-                which I develop ideas into practical systems.
-            </p>
+            <h1>Projects</h1>
         </section>
-
-        <!-- Project gallery -->
 
         <section class="projects-section" id="project-gallery">
 
-            <div class="gallery-heading">
-                <h2>Explore My Work</h2>
-            </div>
-
             <div class="projects-grid">
 
-                <!-- Project 1: Intelligent Electric Power Steering -->
+                <!-- Project 1 -->
 
                 <article class="project-card" id="project-steering">
-
                     <div class="project-image">
                         <div class="image-placeholder">
                             <span class="placeholder-symbol">01</span>
@@ -723,18 +708,15 @@
                     <div class="project-summary">
                         <p class="project-category">Control Systems</p>
                         <h3 class="project-title">Intelligent Electric Power Steering System</h3>
-
                         <p class="project-description">
                             An intelligent steering-assistance system combining
                             adaptive control, simulation, and a physical prototype.
                         </p>
-
                         <div class="project-tags">
                             <span class="project-tag">Fuzzy Logic</span>
                             <span class="project-tag">MATLAB / Simulink</span>
                             <span class="project-tag">Prototyping</span>
                         </div>
-
                         <button class="project-toggle" type="button"
                             aria-expanded="false" aria-controls="details-steering">
                             <span class="toggle-label">
@@ -751,7 +733,6 @@
                                 <p class="details-eyebrow">Project 01 · Control Systems</p>
                                 <h3 class="details-title">Intelligent Electric Power Steering System</h3>
                             </div>
-                            <button class="collapse-button" type="button" aria-label="Close project details">×</button>
                         </div>
 
                         <div class="details-grid">
@@ -823,15 +804,12 @@
                                 </div>
                             </section>
                         </div>
-
-                        <button class="details-close-bottom" type="button">Close project</button>
                     </div>
                 </article>
 
-                <!-- Project 2: Blinker -->
+                <!-- Project 2 -->
 
                 <article class="project-card" id="project-blinker">
-
                     <div class="project-image">
                         <div class="image-placeholder">
                             <span class="placeholder-symbol">02</span>
@@ -842,17 +820,14 @@
                     <div class="project-summary">
                         <p class="project-category">Engineering Design</p>
                         <h3 class="project-title">Blinker</h3>
-
                         <p class="project-description">
                             An engineering project exploring the design and
                             implementation of a blinker system.
                         </p>
-
                         <div class="project-tags">
                             <span class="project-tag">System Design</span>
                             <span class="project-tag">Implementation</span>
                         </div>
-
                         <button class="project-toggle" type="button"
                             aria-expanded="false" aria-controls="details-blinker">
                             <span class="toggle-label">
@@ -869,44 +844,35 @@
                                 <p class="details-eyebrow">Project 02 · Engineering Design</p>
                                 <h3 class="details-title">Blinker</h3>
                             </div>
-                            <button class="collapse-button" type="button" aria-label="Close project details">×</button>
                         </div>
-
                         <div class="details-grid">
                             <section class="detail-section">
                                 <h4><span class="detail-number">01</span> The Challenge</h4>
                                 <p>Add the specific problem this project was designed to address.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">02</span> My Approach</h4>
                                 <p>Describe your concept, design decisions, and the engineering process you followed.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">03</span> System Design</h4>
                                 <p>Add the relevant mechanical, electrical, or electronic design details.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">04</span> Implementation</h4>
                                 <p>Add the actual hardware, software, and tools you used.</p>
                             </section>
-
                             <section class="detail-section full-width">
                                 <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
                                 <p>Add the implementation status, tests performed, and verified outcomes.</p>
                             </section>
                         </div>
-
-                        <button class="details-close-bottom" type="button">Close project</button>
                     </div>
                 </article>
 
-                <!-- Project 3: Disk Sorting Machine -->
+                <!-- Project 3 -->
 
                 <article class="project-card" id="project-disk-sorting">
-
                     <div class="project-image">
                         <div class="image-placeholder">
                             <span class="placeholder-symbol">03</span>
@@ -917,18 +883,15 @@
                     <div class="project-summary">
                         <p class="project-category">Industrial Automation</p>
                         <h3 class="project-title">Disk Sorting Machine</h3>
-
                         <p class="project-description">
                             An automated sorting system combining mechanical
                             handling with sensing and control.
                         </p>
-
                         <div class="project-tags">
                             <span class="project-tag">Automation</span>
                             <span class="project-tag">Sensors</span>
                             <span class="project-tag">Control</span>
                         </div>
-
                         <button class="project-toggle" type="button"
                             aria-expanded="false" aria-controls="details-disk-sorting">
                             <span class="toggle-label">
@@ -945,44 +908,35 @@
                                 <p class="details-eyebrow">Project 03 · Automation</p>
                                 <h3 class="details-title">Disk Sorting Machine</h3>
                             </div>
-                            <button class="collapse-button" type="button" aria-label="Close project details">×</button>
                         </div>
-
                         <div class="details-grid">
                             <section class="detail-section">
                                 <h4><span class="detail-number">01</span> The Challenge</h4>
                                 <p>Add the sorting task and the criteria used to classify the disks.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">02</span> My Approach</h4>
                                 <p>Describe the sorting sequence and the decisions behind your design.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">03</span> System Design</h4>
                                 <p>Add the mechanism layout, sensors, actuators, and control sequence.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">04</span> Implementation</h4>
                                 <p>Add the actual components, programming environment, and tools.</p>
                             </section>
-
                             <section class="detail-section full-width">
                                 <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
                                 <p>Add the observed sorting performance and any verified test results.</p>
                             </section>
                         </div>
-
-                        <button class="details-close-bottom" type="button">Close project</button>
                     </div>
                 </article>
 
-                <!-- Project 4: Formula Student -->
+                <!-- Project 4 -->
 
                 <article class="project-card" id="project-formula-student">
-
                     <div class="project-image">
                         <div class="image-placeholder">
                             <span class="placeholder-symbol">04</span>
@@ -993,18 +947,15 @@
                     <div class="project-summary">
                         <p class="project-category">Mechanical Design</p>
                         <h3 class="project-title">Formula Student Car Design and Analysis</h3>
-
                         <p class="project-description">
                             Vehicle design and engineering analysis focused on
                             the integration of mechanical systems.
                         </p>
-
                         <div class="project-tags">
                             <span class="project-tag">CAD</span>
                             <span class="project-tag">Mechanical Design</span>
                             <span class="project-tag">Analysis</span>
                         </div>
-
                         <button class="project-toggle" type="button"
                             aria-expanded="false" aria-controls="details-formula-student">
                             <span class="toggle-label">
@@ -1021,44 +972,35 @@
                                 <p class="details-eyebrow">Project 04 · Mechanical Design</p>
                                 <h3 class="details-title">Formula Student Car Design and Analysis</h3>
                             </div>
-                            <button class="collapse-button" type="button" aria-label="Close project details">×</button>
                         </div>
-
                         <div class="details-grid">
                             <section class="detail-section">
                                 <h4><span class="detail-number">01</span> The Challenge</h4>
                                 <p>Describe the vehicle design objectives and engineering constraints.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">02</span> My Approach</h4>
                                 <p>Explain your design process, component choices, and analysis methods.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">03</span> System Design</h4>
                                 <p>Show the CAD assembly, individual components, or engineering drawings.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">04</span> Implementation</h4>
                                 <p>Specify the CAD software, simulation tools, and your individual contribution.</p>
                             </section>
-
                             <section class="detail-section full-width">
                                 <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
                                 <p>Add the actual analysis results, design comparisons, and conclusions.</p>
                             </section>
                         </div>
-
-                        <button class="details-close-bottom" type="button">Close project</button>
                     </div>
                 </article>
 
-                <!-- Project 5: Industrial Automation -->
+                <!-- Project 5 -->
 
                 <article class="project-card" id="project-industrial-automation">
-
                     <div class="project-image">
                         <div class="image-placeholder">
                             <span class="placeholder-symbol">05</span>
@@ -1069,18 +1011,15 @@
                     <div class="project-summary">
                         <p class="project-category">Intelligent Systems</p>
                         <h3 class="project-title">Industrial Automation</h3>
-
                         <p class="project-description">
                             An automation project focused on coordinating
                             equipment, control logic, and process operation.
                         </p>
-
                         <div class="project-tags">
                             <span class="project-tag">Automation</span>
                             <span class="project-tag">Control Logic</span>
                             <span class="project-tag">System Integration</span>
                         </div>
-
                         <button class="project-toggle" type="button"
                             aria-expanded="false" aria-controls="details-industrial-automation">
                             <span class="toggle-label">
@@ -1097,44 +1036,35 @@
                                 <p class="details-eyebrow">Project 05 · Automation</p>
                                 <h3 class="details-title">Industrial Automation</h3>
                             </div>
-                            <button class="collapse-button" type="button" aria-label="Close project details">×</button>
                         </div>
-
                         <div class="details-grid">
                             <section class="detail-section">
                                 <h4><span class="detail-number">01</span> The Challenge</h4>
                                 <p>Describe the process or task that required automation.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">02</span> My Approach</h4>
                                 <p>Explain the control strategy and the workflow you designed.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">03</span> System Design</h4>
                                 <p>Add the system architecture, I/O layout, or control diagram.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">04</span> Implementation</h4>
                                 <p>List the actual controller, programming tools, sensors, and actuators.</p>
                             </section>
-
                             <section class="detail-section full-width">
                                 <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
                                 <p>Describe what was tested and the results you observed.</p>
                             </section>
                         </div>
-
-                        <button class="details-close-bottom" type="button">Close project</button>
                     </div>
                 </article>
 
-                <!-- Project 6: AI and Machine Learning -->
+                <!-- Project 6 -->
 
                 <article class="project-card" id="project-ai-ml">
-
                     <div class="project-image">
                         <div class="image-placeholder">
                             <span class="placeholder-symbol">06</span>
@@ -1145,18 +1075,15 @@
                     <div class="project-summary">
                         <p class="project-category">Artificial Intelligence</p>
                         <h3 class="project-title">AI and Machine Learning</h3>
-
                         <p class="project-description">
                             A computational project exploring the application
                             of machine learning to an engineering problem.
                         </p>
-
                         <div class="project-tags">
                             <span class="project-tag">Machine Learning</span>
                             <span class="project-tag">Python</span>
                             <span class="project-tag">Data Analysis</span>
                         </div>
-
                         <button class="project-toggle" type="button"
                             aria-expanded="false" aria-controls="details-ai-ml">
                             <span class="toggle-label">
@@ -1173,44 +1100,35 @@
                                 <p class="details-eyebrow">Project 06 · Artificial Intelligence</p>
                                 <h3 class="details-title">AI and Machine Learning</h3>
                             </div>
-                            <button class="collapse-button" type="button" aria-label="Close project details">×</button>
                         </div>
-
                         <div class="details-grid">
                             <section class="detail-section">
                                 <h4><span class="detail-number">01</span> The Challenge</h4>
                                 <p>Define the problem and why a machine-learning approach was relevant.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">02</span> My Approach</h4>
                                 <p>Explain the model, data preparation, features, and methodology actually used.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">03</span> System Design</h4>
                                 <p>Add the model pipeline, workflow diagram, or evaluation visualization.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">04</span> Implementation</h4>
                                 <p>Specify the language, libraries, environment, and your contribution.</p>
                             </section>
-
                             <section class="detail-section full-width">
                                 <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
                                 <p>Add the actual evaluation metrics and findings. Avoid claiming performance without evidence.</p>
                             </section>
                         </div>
-
-                        <button class="details-close-bottom" type="button">Close project</button>
                     </div>
                 </article>
 
-                <!-- Project 7: Dam Water Level Control -->
+                <!-- Project 7 -->
 
                 <article class="project-card" id="project-dam-control">
-
                     <div class="project-image">
                         <div class="image-placeholder">
                             <span class="placeholder-symbol">07</span>
@@ -1221,18 +1139,15 @@
                     <div class="project-summary">
                         <p class="project-category">Control Engineering</p>
                         <h3 class="project-title">Dam Water Level Control</h3>
-
                         <p class="project-description">
                             A water-level regulation project focused on
                             monitoring system behavior and control response.
                         </p>
-
                         <div class="project-tags">
                             <span class="project-tag">Control Systems</span>
                             <span class="project-tag">Monitoring</span>
                             <span class="project-tag">Simulation</span>
                         </div>
-
                         <button class="project-toggle" type="button"
                             aria-expanded="false" aria-controls="details-dam-control">
                             <span class="toggle-label">
@@ -1249,44 +1164,35 @@
                                 <p class="details-eyebrow">Project 07 · Control Engineering</p>
                                 <h3 class="details-title">Dam Water Level Control</h3>
                             </div>
-                            <button class="collapse-button" type="button" aria-label="Close project details">×</button>
                         </div>
-
                         <div class="details-grid">
                             <section class="detail-section">
                                 <h4><span class="detail-number">01</span> The Challenge</h4>
                                 <p>Describe the water-level regulation objective and operating constraints.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">02</span> My Approach</h4>
                                 <p>Explain the control strategy and how water-level changes were handled.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">03</span> System Design</h4>
                                 <p>Add the system diagram, sensor arrangement, and actuator or gate logic.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">04</span> Implementation</h4>
                                 <p>Specify the tools, controller, and simulation or hardware used.</p>
                             </section>
-
                             <section class="detail-section full-width">
                                 <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
                                 <p>Add the actual response plots, observations, and verified outcomes.</p>
                             </section>
                         </div>
-
-                        <button class="details-close-bottom" type="button">Close project</button>
                     </div>
                 </article>
 
-                <!-- Project 8: V12 Engine Design -->
+                <!-- Project 8 -->
 
                 <article class="project-card" id="project-v12">
-
                     <div class="project-image">
                         <div class="image-placeholder">
                             <span class="placeholder-symbol">08</span>
@@ -1297,18 +1203,15 @@
                     <div class="project-summary">
                         <p class="project-category">Mechanical Design</p>
                         <h3 class="project-title">V12 Engine Design</h3>
-
                         <p class="project-description">
                             A mechanical design project exploring the assembly
                             and arrangement of a V12 engine.
                         </p>
-
                         <div class="project-tags">
                             <span class="project-tag">3D CAD</span>
                             <span class="project-tag">Engine Design</span>
                             <span class="project-tag">Assembly</span>
                         </div>
-
                         <button class="project-toggle" type="button"
                             aria-expanded="false" aria-controls="details-v12">
                             <span class="toggle-label">
@@ -1325,37 +1228,29 @@
                                 <p class="details-eyebrow">Project 08 · Mechanical Design</p>
                                 <h3 class="details-title">V12 Engine Design</h3>
                             </div>
-                            <button class="collapse-button" type="button" aria-label="Close project details">×</button>
                         </div>
-
                         <div class="details-grid">
                             <section class="detail-section">
                                 <h4><span class="detail-number">01</span> The Challenge</h4>
                                 <p>Describe the design brief, engine configuration, and project requirements.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">02</span> My Approach</h4>
                                 <p>Explain how the engine assembly and its main components were designed.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">03</span> System Design</h4>
                                 <p>Add your CAD assembly, exploded view, and component details.</p>
                             </section>
-
                             <section class="detail-section">
                                 <h4><span class="detail-number">04</span> Implementation</h4>
                                 <p>Specify the CAD software, modeling methods, and components you developed.</p>
                             </section>
-
                             <section class="detail-section full-width">
                                 <h4><span class="detail-number">05</span> Testing &amp; Results</h4>
                                 <p>Describe any assembly checks, motion studies, or analyses actually performed.</p>
                             </section>
                         </div>
-
-                        <button class="details-close-bottom" type="button">Close project</button>
                     </div>
                 </article>
 
@@ -1373,17 +1268,13 @@
     <script>
         const projectCards = document.querySelectorAll(".project-card");
 
-        function closeProject(card, restoreFocus = false) {
+        function closeProject(card) {
             card.classList.remove("is-expanded");
 
             const toggle = card.querySelector(".project-toggle");
             toggle.setAttribute("aria-expanded", "false");
             toggle.querySelector(".toggle-symbol").textContent = "+";
             toggle.querySelector(".toggle-text").textContent = "Explore project";
-
-            if (restoreFocus) {
-                toggle.focus();
-            }
         }
 
         function openProject(card) {
@@ -1403,9 +1294,6 @@
 
         projectCards.forEach((card) => {
             const toggle = card.querySelector(".project-toggle");
-            const closeButtons = card.querySelectorAll(
-                ".collapse-button, .details-close-bottom"
-            );
 
             toggle.addEventListener("click", () => {
                 const isExpanded = card.classList.contains("is-expanded");
@@ -1415,12 +1303,6 @@
                 } else {
                     openProject(card);
                 }
-            });
-
-            closeButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                    closeProject(card, true);
-                });
             });
         });
     </script>
