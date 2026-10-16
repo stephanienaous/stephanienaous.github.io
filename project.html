@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +40,10 @@
             color: var(--navy);
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
+        }
+
+        body.modal-open {
+            overflow: hidden;
         }
 
         a {
@@ -344,38 +347,50 @@
             transform: rotate(180deg);
         }
 
-        /* Shared project details panel */
+        /* Floating project details modal */
 
         .details-shell {
-            display: grid;
-            grid-template-rows: 0fr;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(24, 26, 38, 0.48);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             opacity: 0;
-            margin-top: 0;
             visibility: hidden;
             pointer-events: none;
             transition:
-                grid-template-rows 340ms ease,
-                opacity 240ms ease,
-                margin-top 340ms ease,
-                visibility 0s linear 340ms;
+                opacity 260ms ease,
+                visibility 0s linear 300ms;
         }
 
         .details-shell.is-open {
-            grid-template-rows: 1fr;
             opacity: 1;
-            margin-top: 28px;
             visibility: visible;
             pointer-events: auto;
             transition:
-                grid-template-rows 340ms ease,
                 opacity 260ms ease,
-                margin-top 340ms ease,
                 visibility 0s;
         }
 
         .details-clip {
-            min-height: 0;
-            overflow: hidden;
+            width: min(1000px, 100%);
+            max-height: calc(100vh - 48px);
+            overflow: auto;
+            overscroll-behavior: contain;
+            border-radius: 16px;
+            transform: translateY(14px) scale(0.985);
+            transition: transform 300ms ease;
+            scrollbar-width: thin;
+            scrollbar-color: var(--mauve) transparent;
+        }
+
+        .details-shell.is-open .details-clip {
+            transform: translateY(0) scale(1);
         }
 
         .details-panel {
@@ -383,13 +398,7 @@
             background: var(--white);
             border: 1px solid var(--border);
             border-radius: 16px;
-            box-shadow: var(--shadow);
-            transform: translateY(10px);
-            transition: transform 340ms ease;
-        }
-
-        .details-shell.is-open .details-panel {
-            transform: translateY(0);
+            box-shadow: 0 24px 80px rgba(20, 22, 34, 0.24);
         }
 
         .details-heading {
@@ -618,8 +627,12 @@
                 padding: 20px;
             }
 
-            .details-shell.is-open {
-                margin-top: 20px;
+            .details-shell {
+                padding: 12px;
+            }
+
+            .details-clip {
+                max-height: calc(100vh - 24px);
             }
 
             .details-heading {
@@ -981,6 +994,9 @@
         <section class="details-shell"
             id="projectDetails"
             aria-label="Selected project details"
+            aria-labelledby="detailsTitle"
+            role="dialog"
+            aria-modal="true"
             aria-hidden="true"
             inert>
 
@@ -1364,6 +1380,10 @@
             detailsShell.inert = false;
             detailsShell.setAttribute("aria-hidden", "false");
             detailsShell.classList.add("is-open");
+            document.body.classList.add("modal-open");
+
+            // Move keyboard focus into the floating panel without jumping the page.
+            closeDetailsButton.focus({ preventScroll: true });
         }
 
         function closeProject() {
@@ -1378,6 +1398,7 @@
 
             detailsShell.classList.remove("is-open");
             detailsShell.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
 
             if (closeTimer) {
                 window.clearTimeout(closeTimer);
@@ -1405,7 +1426,16 @@
             closeProject();
 
             if (cardToFocus) {
-                cardToFocus.querySelector(".project-toggle").focus();
+                cardToFocus.querySelector(".project-toggle").focus({ preventScroll: true });
+            }
+        });
+
+        // Clicking the darkened backdrop closes the modal.
+        detailsShell.addEventListener("click", (event) => {
+            if (event.target === detailsShell && selectedCard) {
+                const cardToFocus = selectedCard;
+                closeProject();
+                cardToFocus.querySelector(".project-toggle").focus({ preventScroll: true });
             }
         });
 
@@ -1414,7 +1444,7 @@
             if (event.key === "Escape" && selectedCard) {
                 const cardToFocus = selectedCard;
                 closeProject();
-                cardToFocus.querySelector(".project-toggle").focus();
+                cardToFocus.querySelector(".project-toggle").focus({ preventScroll: true });
             }
         });
     </script>
